@@ -22,7 +22,8 @@
 - 考える時間は無いけど、服装は整えときたい時
 ​
 ## 設計書
-後ほど作成予定
+<img src="app/assets/images/RANDINATE UIFlows.png" alt="画面遷移図">
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
