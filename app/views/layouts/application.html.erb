@@ -11,6 +11,56 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span>RANDINATE</span></a>
+          <div>
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li class="mr-3">
+                  <%= link_to "投稿一覧", admin_coordinates_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+                <li class="mr-3">
+                  <%= link_to "会員一覧", admin_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+              <% elsif user_signed_in? %>
+                <li class="mr-3">
+                  <%= link_to "コーディネート一覧", public_coordinates_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+                <li class="mr-3">
+                  <%= link_to "マイページ", public_user_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+              <% else %>
+                <li class="mr-3">
+                  <%= link_to "コーディネート一覧", coordinates_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+                <li class="mr-3">
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+                <li>
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <p><%= notice %></p>
+      <%= yield %>
+    </main>
+    <footer class="text-center border-top border-dark">
+      <div class="m-3">
+        <p>CopyRight RANDINATE</p>
+      </div>
+    </footer>
   </body>
 </html>

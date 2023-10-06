@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'homes#top'
-    resources :users, only: [:index, :show, :update]
+    resources :users, only: [:show, :update]
     resources :coordinates, only: [:index, :show, :destroy]
   end
 
