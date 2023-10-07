@@ -1,28 +1,43 @@
 <h2>ユーザー新規登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: @user, url: user_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :name, "ニックネーム" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <div>性別</div>
+    <%= f.radio_button :gender, User.genders.key(0) %>&nbsp;
+    <%= f.label :gender_male, User.genders_i18n[:male] %>
+    <%= f.radio_button :gender, User.genders.key(0) %>&nbsp;
+    <%= f.label :gender_female, User.genders_i18n[:female] %>
+    <%= f.radio_button :gender, User.genders.key(0) %>&nbsp;
+    <%= f.label :gender_other, User.genders_i18n[:other] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
+    <% end %><br>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 

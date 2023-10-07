@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
 
@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
 
-    get 'users/mypage' => 'users#show'
-    get 'users/information/edit' => "users#edit"
-    patch 'users/infomation' => 'users#update'
-    get 'users/confirm' => 'user#confirm'
-    patch 'users/deactivate' => 'users#deactivate'
+    get 'mypage' => 'users#show'
+    get 'information/edit' => "users#edit"
+    patch 'infomation' => 'users#update'
+    get 'confirm' => 'user#confirm'
+    patch 'deactivate' => 'users#deactivate'
 
     resources :coordinates
     resources :bookmarks, only: [:index, :create, :destroy]
