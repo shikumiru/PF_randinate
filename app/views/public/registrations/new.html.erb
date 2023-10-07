@@ -1,44 +1,55 @@
-<h2>ユーザー新規登録</h2>
-
-<%= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name, "ニックネーム" %><br>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="row">
+    <div class="col-10 my-5">
+      <h1 class="bg-light d-inline-block px-3">ユーザー新規登録</h1>
+    </div>
+    <div class="col-9 offset-md-1">
+      <%= form_with model: @user, url: user_registration_path do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <div class="form-group">
+          <%= f.label :name, "ニックネーム", class: "font-weight-bold" %><br>
+          <%= f.text_field :name, autofocus: true, placeholder: "ニックネーム", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <p class="font-weight-bold">性別</p>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :gender, User.genders.key(0), class: "form-check-input" %>
+            <%= f.label :gender_male, User.genders_i18n[:male], class: "form-check-label" %>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :gender, User.genders.key(0), class: "form-check-input" %>
+            <%= f.label :gender_female, User.genders_i18n[:female], class: "form-check-label" %>
+          </div>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :gender, User.genders.key(0), class: "form-check-input" %>
+            <%= f.label :gender_other, User.genders_i18n[:other], class: "form-check-label" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, class: "font-weight-bold" %><br>
+          <%= f.email_field :email, placeholder: "sample@example.com", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, class: "font-weight-bold" %>
+          <% if @minimum_password_length %>
+          <em class="font-weight-bold">(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: "font-weight-bold" %><br>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+        <div>
+          <%= f.submit "新規登録", class: "btn btn-primary btn-lg px-5" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-10 my-5">
+      <h1 class="bg-light d-inline-block px-3">既に登録がお済みの方</h1>
+    </div>
+    <h4 class="col-9 offset-md-1 mb-5">
+      こちらから<%= render "public/shared/links" %>してください
+    </h4>
   </div>
-
-  <div class="field">
-    <div>性別</div>
-    <%= f.radio_button :gender, User.genders.key(0) %>&nbsp;
-    <%= f.label :gender_male, User.genders_i18n[:male] %>
-    <%= f.radio_button :gender, User.genders.key(0) %>&nbsp;
-    <%= f.label :gender_female, User.genders_i18n[:female] %>
-    <%= f.radio_button :gender, User.genders.key(0) %>&nbsp;
-    <%= f.label :gender_other, User.genders_i18n[:other] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
