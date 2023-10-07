@@ -1,2 +1,38 @@
 <h1>ユーザートップページ</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container p-5">
+  <div class="row">
+    <%= render 'public/coordinates/button' %>
+    <div class="col-8 offset-md-1">
+      <div class="text-center">
+        <p>
+          Welcome,RANDINATE!<br>
+          あなたのコーディネートを投稿し、<br>
+          みんなのコーディネートを参考にしよう！<br>
+          服装に悩んであなたでもランダム検索<br>
+          あなたのお気に入りを探そう！！！
+        </p>
+      </div>
+      <div class="row my-3">
+        <h2 class="font-weight-bold">新着投稿</h2>
+      </div>
+      <div class="row">
+        <% @coordinates.limit(4).each do |coordinate| %>
+          <div class="col-2 p-3">
+            <div>
+              <%= link_to coordinate_path(coordinate) do %>
+                <%= image_tag coordinate.get_coordinate_image %>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to coordinate.user.name, coordinate_path(coordinate) %><br>
+              <%= link_to coordinate.style %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="text-right">
+        <%= link_to "全ての投稿を見る>", coordinates_path %>
+      </div>
+    </div>
+  </div>
+</div>
