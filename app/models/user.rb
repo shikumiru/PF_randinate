@@ -11,4 +11,6 @@ class User < ApplicationRecord
   validates :gender, presence: true
 
   enum gender: { male: 0, female: 1, other: 2 }
+  
+  has_one_attached :profile_image
 end
