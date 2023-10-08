@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -28,6 +28,9 @@
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-light btn btn-secondary" %>
                 </li>
               <% elsif user_signed_in? %>
+                <li class="mr-3">
+                  <%= link_to "コーディネート投稿", new_coordinate_path, class: "nav-link text-light btn btn-secondary" %>
+                </li>
                 <li class="mr-3">
                   <%= link_to "コーディネート一覧", coordinates_path, class: "nav-link text-light btn btn-secondary" %>
                 </li>
@@ -57,12 +60,9 @@
       <p><%= notice %></p>
       <%= yield %>
     </main>
-
-    <!-- 明日はここから --->
-
-    <footer class="text-center bg-dark">
+    <footer class="mt-auto bg-dark">
       <div class="container">
-        <p class="text-white">CopyRight RANDINATE</p>
+        <p class="text-white text-center mt-3">CopyRight RANDINATE</p>
       </div>
     </footer>
   </body>

@@ -1,2 +1,60 @@
-<h1>カレントユーザーマイページ</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-3 my-5">
+      <h1 class="bg-light d-inline-block px-3">会員情報</h1>
+    </div>
+    <div class="col-3 offset-md-1 my-5">
+      <%= link_to "会員情報を編集", information_edit_path, class: "btn btn-success btn-lg" %>
+    </div>
+    <div class="col-9 offset-md-1">
+      <table class="table table-borderd">
+        <tbody>
+          <tr>
+            <th scope="col" style="width: 20%">ニックネーム</th>
+            <td class="text-center"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td class="text-center"><%= @user.gender_i18n %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td class="text-center"><%= @user.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-10 mx-0">
+      <div class="row">
+        <div class="col-6">
+          <h3 class="bg-light d-inline-block px-3">投稿一覧</h3>
+          <% @coordinates.limit(4).each do |coordinate| %>
+            <div>
+              <%= link_to coordinate_path(coordinate) do %>
+                <%= image_tag coordinate.get_coordinate_image %>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to coordinate.user.name, coordinate_path(coordinate) %><br>
+              <%= link_to coordinate.style %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-6">
+          <h3 class="bg-light d-inline-block px-3">ブックマーク一覧</h3>
+          <% @bookmarks.limit(4).each do |bookmark| %>
+            <div>
+              <%= link_to coordinate_path(coordinate) do %>
+                <%= image_tag coordinate.get_coordinate_image %>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to coordinate.user.name, coordinate_path(coordinate) %><br>
+              <%= link_to coordinate.style %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
