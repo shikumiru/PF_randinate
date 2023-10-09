@@ -9,9 +9,16 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 import "jquery";
+import "preview.js";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+
+import 'bootstrap-tagsinput';
+
+$(document).ready(function() {
+  $("input[data-role='tagsinput']").tagsinput();
+});
 
 Rails.start()
 Turbolinks.start()
