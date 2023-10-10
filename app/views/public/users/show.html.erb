@@ -3,9 +3,11 @@
     <div class="col-3 my-5">
       <h1 class="bg-light d-inline-block px-3">会員情報</h1>
     </div>
-    <div class="col-3 offset-md-1 my-5">
-      <%= link_to "会員情報を編集", information_edit_path, class: "btn btn-success btn-lg" %>
-    </div>
+    <% if @user == current_user %>
+      <div class="col-3 offset-md-1 my-5">
+        <%= link_to "会員情報を編集", edit_user_path(@user), class: "btn btn-success btn-lg" %>
+      </div>
+    <% end %>
     <div class="col-9 offset-md-1">
       <table class="table table-borderd">
         <tbody>
@@ -31,11 +33,10 @@
           <% @coordinates.limit(4).each do |coordinate| %>
             <div>
               <%= link_to coordinate_path(coordinate) do %>
-                <%= image_tag coordinate.get_coordinate_image %>
+                <%= image_tag coordinate.get_coordinate_image(150,200) %>
               <% end %>
             </div>
             <div>
-              <%= link_to coordinate.user.name, coordinate_path(coordinate) %><br>
               <%= link_to coordinate.style %>
             </div>
           <% end %>

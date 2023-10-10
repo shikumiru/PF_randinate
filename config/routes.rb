@@ -18,13 +18,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-
-    get 'mypage' => 'users#show'
-    get 'information/edit' => "users#edit"
-    patch 'infomation' => 'users#update'
-    get 'confirm' => 'user#confirm'
-    patch 'deactivate' => 'users#deactivate'
-
+    resources :users, only: [:show, :edit, :update] do
+      member do
+        patch :deactivate
+      end
+    end
     resources :coordinates
     resources :bookmarks, only: [:index, :create, :destroy]
   end

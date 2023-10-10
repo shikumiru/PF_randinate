@@ -5,6 +5,10 @@ class Coordinate < ApplicationRecord
 
   has_one_attached :coordinate_image
 
+  def get_coordinate_image(width, height)
+    coordinate_image.variant(resize_to_limit: [width, height]).processed
+  end
+
   # gem:acts_as_taggableの使用
   acts_as_taggable_on :tags
 end

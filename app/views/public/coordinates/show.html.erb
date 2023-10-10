@@ -1,2 +1,46 @@
-<h1>Public::Coordinates#show</h1>
-<p>Find me in app/views/public/coordinates/show.html.erb</p>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-3 d-flex flex-column">
+      <%= render 'public/coordinates/button' %>
+      <% if @coordinate.user == current_user %>
+        <button type="button" class="btn btn-success btn-lg">コーディネート編集</button>
+      <% end %>
+    </div>
+    <div class="col-8 offset-md-1">
+      <div class="row my-3">
+        <h2 class="font-weight-bold">コーディネート詳細</h2>
+      </div>
+      <div class="row">
+        <div class="col-5 d-flex justify-content-center">
+          <%= image_tag @coordinate.get_coordinate_image(420,560) %>
+        </div>
+        <div class="col-7">
+          <div class="row mt-3">
+            <div class="col-md-4 text-center border border-dark rounded">ニックネーム</div>
+            <div class="col-md-7 offset-md-1 text-center border border-dark rounded"><%= @coordinate.user.name %></div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-4 text-center border border-dark rounded">スタイル</div>
+            <div class="col-md-7 offset-md-1 text-center border border-dark rounded"><%= @coordinate.style_i18n %></div>
+          </div>
+          <div class="row">
+            <div class="col-4 text-center border border-dark rounded mt-3">紹介</div>
+            <div class="col-12 mt-3 border border-dark rounded" style="height: 250px">
+              <p><%= @coordinate.introduction %></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 text-center border border-dark rounded mt-3">タグ</div>
+            <div class="col-12 mt-3">
+              <% @tags.each do |tag| %>
+                <span class="badge badge-secondary">
+                  <%= tag.name %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

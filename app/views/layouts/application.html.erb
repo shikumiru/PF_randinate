@@ -35,7 +35,7 @@
                   <%= link_to "コーディネート一覧", coordinates_path, class: "nav-link text-light btn btn-secondary" %>
                 </li>
                 <li class="mr-3">
-                  <%= link_to "マイページ", mypage_path, class: "nav-link text-light btn btn-secondary" %>
+                  <%= link_to "マイページ", user_path(current_user), class: "nav-link text-light btn btn-secondary" %>
                 </li>
                 <li>
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-light btn btn-secondary" %>

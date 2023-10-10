@@ -1,8 +1,10 @@
-<div class="container p-5">
+<div class="container my-5">
   <div class="row">
-    <%= render 'public/coordinates/button' %>
+    <div class="col-3 d-flex flex-column">
+      <%= render 'public/coordinates/button' %>
+    </div>
     <div class="col-8 offset-md-1">
-      <div class="text-center">
+      <div class="text-center m-5">
         <p>
           Welcome,RANDINATE!<br>
           あなたのコーディネートを投稿し、<br>
@@ -15,16 +17,17 @@
         <h2 class="font-weight-bold">新着投稿</h2>
       </div>
       <div class="row">
-        <% @coordinates.limit(4).each do |coordinate| %>
+        <% @coordinates.limit(5).each do |coordinate| %>
           <div class="col-2 p-3">
             <div>
               <%= link_to coordinate_path(coordinate) do %>
-                <%= image_tag coordinate.get_coordinate_image %>
+                <%= image_tag coordinate.get_coordinate_image(150,200) %>
               <% end %>
             </div>
             <div>
-              <%= link_to coordinate.user.name, coordinate_path(coordinate) %><br>
-              <%= link_to coordinate.style %>
+              <%= link_to coordinate.user.name, user_path(coordinate.user) %><br>
+              <!-- スタイルでスタイル検索　coordinate index scope -->
+              <%= link_to coordinate.style_i18n %>
             </div>
           </div>
         <% end %>

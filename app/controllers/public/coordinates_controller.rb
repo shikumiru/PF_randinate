@@ -3,7 +3,18 @@ class Public::CoordinatesController < ApplicationController
     @coordinate = Coordinate.new
   end
 
+  def create
+    @coordinate = Coordinate.new(coordinate_params)
+    @coordinate.user_id = current_user.id
+    if @coordinate.save
+      redirect_to coordinate_path(@coordinate)
+    else
+      render "new"
+    end
+  end
+
   def index
+    @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

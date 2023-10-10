@@ -1,8 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = current_user
-    @coordinates = current_user.coordinates
-    @bookmarks = current_user.bookmarks
+    @user = User.find(params[:id])
+    @coordinates = @user.coordinates
+    @bookmarks = @user.bookmarks
   end
 
   def edit
