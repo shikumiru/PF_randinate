@@ -3,7 +3,8 @@
     <div class="col-3 d-flex flex-column">
       <%= render 'public/coordinates/button' %>
       <% if @coordinate.user == current_user %>
-        <button type="button" class="btn btn-success btn-lg">コーディネート編集</button>
+        <%= link_to "コーディネート編集", edit_coordinate_path(@coordinate), class: "btn btn-success btn-lg mb-3" %>
+        <%= link_to "コーディネートを削除", coordinate_path(@coordinate), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-lg" %>
       <% end %>
     </div>
     <div class="col-8 offset-md-1">

@@ -29,9 +29,6 @@
                 </li>
               <% elsif user_signed_in? %>
                 <li class="mr-3">
-                  <%= link_to "コーディネート投稿", new_coordinate_path, class: "nav-link text-light btn btn-secondary" %>
-                </li>
-                <li class="mr-3">
                   <%= link_to "コーディネート一覧", coordinates_path, class: "nav-link text-light btn btn-secondary" %>
                 </li>
                 <li class="mr-3">

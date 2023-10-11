@@ -23,6 +23,22 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def edit
+    @coordinate = Coordinate.find(params[:id])
+  end
+
+  def update
+    @coordinate = Coordinate.find(params[:id])
+    if @coordinate.update(coordinate_params)
+      redirect_to coordinate_path(@coordinate)
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    coordinate = Coordinate.find(parms[:id])
+    coordinate.destroy
+    redirect_to coordinates_path
   end
 
   private

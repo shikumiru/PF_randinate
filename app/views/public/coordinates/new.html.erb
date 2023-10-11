@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 offset-md-1 my-5">
+    <div class="col-md-10 offset-md-1 my-3">
       <h2 class="bg-light d-inline-block px-3">コーディネート投稿</h2>
     </div>
+  </div>
+  <%= form_with model: @coordinate, url: coordinates_path do |f| %>
+  <div class="row">
     <div class="col-5">
-      <%= form_with model: @coordinate, url: coordinates_path do |f| %>
       <div class="form-group">
         <%= f.label :コーディネート画像, class: "font-weight-bold" %><br>
         <%= f.file_field :coordinate_image, class: "form-control-image", accept: "image/*", id: "form" %>
@@ -29,16 +31,16 @@
       </div>
       <div class="form-group">
         <%= f.label :紹介, class: "font-weight-bold" %><br>
-        <%= f.text_area :introduction, class: "form-control", rows: "8" %>
+        <%= f.text_area :introduction, class: "form-control", rows: "10" %>
       </div>
       <div class="form-group form-group_tags">
-        <%= f.label :tag_list, "タグ", class: "form-label" %>
+        <%= f.label :tag_list, "タグ", class: "font-weight-bold" %>
         <%= f.text_field :tag_list, value: @coordinate.tag_list.join(","), class: "form-control", data: { role: "tagsinput" } %>
       </div>
       <div class="form-group">
         <%= f.submit "投稿", class: "btn btn-lg btn-primary btn-block" %>
       </div>
-      <% end %>
     </div>
+    <% end %>
   </div>
 </div>

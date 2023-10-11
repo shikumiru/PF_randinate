@@ -13,13 +13,12 @@ import "preview.js";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
-
 import 'bootstrap-tagsinput';
-
-$(document).ready(function() {
-  $("input[data-role='tagsinput']").tagsinput();
-});
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(document).on("turbolinks:load", function() {
+  $("input[data-role='tagsinput']").tagsinput();
+});
