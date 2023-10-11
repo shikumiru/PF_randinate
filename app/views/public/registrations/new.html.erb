@@ -17,11 +17,11 @@
             <%= f.label :gender_male, User.genders_i18n[:male], class: "form-check-label" %>
           </div>
           <div class="form-check form-check-inline">
-            <%= f.radio_button :gender, User.genders.key(0), class: "form-check-input" %>
+            <%= f.radio_button :gender, User.genders.key(1), class: "form-check-input" %>
             <%= f.label :gender_female, User.genders_i18n[:female], class: "form-check-label" %>
           </div>
           <div class="form-check form-check-inline">
-            <%= f.radio_button :gender, User.genders.key(0), class: "form-check-input" %>
+            <%= f.radio_button :gender, User.genders.key(2), class: "form-check-input" %>
             <%= f.label :gender_other, User.genders_i18n[:other], class: "form-check-label" %>
           </div>
         </div>

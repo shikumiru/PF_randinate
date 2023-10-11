@@ -1,2 +1,43 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4 my-3">
+      <h1 class="bg-light d-inline-block px-3">会員情報編集</h1>
+    </div>
+  </div>
+  <%= form_with model: @user, url: user_path do |f| %>
+  <div class="row">
+    <div class="col-md-9 offset-md-1 my-3">
+      <table class="table table-borderd">
+        <tbody>
+          <tr>
+            <th scope="col" class="w-25"><%= f.label :name, "ニックネーム", class: "font-weight-bold" %></th>
+            <td><%= f.text_field :name, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :gender, "性別" %></th>
+            <td class="form-check form-check-inline">
+              <%= f.radio_button :gender, User.genders.key(0), class: "form-check-input" %>
+              <%= f.label :gender_male, User.genders_i18n[:male], class: "form-check-label mr-5" %>
+              <%= f.radio_button :gender, User.genders.key(1), class: "form-check-input" %>
+              <%= f.label :gender_female, User.genders_i18n[:female], class: "form-check-label mr-5" %>
+              <%= f.radio_button :gender, User.genders.key(2), class: "form-check-input" %>
+              <%= f.label :gender_other, User.genders_i18n[:other], class: "form-check-label" %>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :email, "メールアドレス" %></th>
+            <td><%= f.email_field :email, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <%= f.submit "変更内容を保存", class: "btn btn-lg btn-success mr-3" %>
+              <%= link_to "退会する", deactivate_user_path, method: :patch, class: "btn btn-lg btn-danger", data: { confirm: "本当に退会しますか？" } %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% end %>
+</div>

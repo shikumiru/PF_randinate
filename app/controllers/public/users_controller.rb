@@ -6,20 +6,31 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "会員情報を変更しました。"
-      redirect_to public_user_path
+      redirect_to user_path(@user)
     else
       flash[:notice] = "変更内容が正しくありません。"
-      redirect_to public_customer_edit_path
+      redirect_to "edit"
     end
   end
 
-  def confirm
+  def deactivate
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を完了しました。ご利用ありがとうございました。"
+    redirect_to root_path
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :gender, :email)
   end
 end

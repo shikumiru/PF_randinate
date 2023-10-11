@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 my-3">
+    <div class="col-4 my-3">
       <h1 class="bg-light d-inline-block px-3">会員情報</h1>
     </div>
     <% if @user == current_user %>
@@ -12,7 +12,7 @@
       <table class="table table-borderd">
         <tbody>
           <tr>
-            <th scope="col" style="width: 20%">ニックネーム</th>
+            <th scope="col" class="w-25">ニックネーム</th>
             <td class="text-center"><%= @user.name %></td>
           </tr>
           <tr>
