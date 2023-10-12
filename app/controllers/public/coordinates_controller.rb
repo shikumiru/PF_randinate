@@ -36,7 +36,7 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def destroy
-    coordinate = Coordinate.find(parms[:id])
+    coordinate = Coordinate.find(params[:id])
     coordinate.destroy
     redirect_to coordinates_path
   end
