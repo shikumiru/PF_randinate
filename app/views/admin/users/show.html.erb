@@ -1,2 +1,54 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h1 class="bg-light d-inline-block px-3 my-3">会員情報詳細</h1>
+  </div>
+  <%= form_with model: @user, url: admin_user_path do |f| %>
+  <div class="col-md-9 offset-md-1 my-3">
+    <table class="table table-borderd">
+      <tbody>
+        <tr>
+          <th scope="col" class="w-25">ニックネーム</th>
+          <td class="text-center"><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>性別</th>
+          <td class="text-center"><%= @user.gender_i18n %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td class="text-center"><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <td class="text-center">
+            <%= f.radio_button :is_deleted, "false" %>
+            <%= f.label :is_deleted_false, "有効", class:"mr-5" %>
+            <%= f.radio_button :is_deleted, "true" %>
+            <%= f.label :is_deleted_true, "退会" %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="d-flex justify-content-center"><%= f.submit "変更を保存", class: "btn btn-success btn-lg px-5 py-3" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+  <div class="col-12">
+    <div class="d-flex justify-content-between my-3">
+      <h3 class="bg-light px-3">投稿一覧</h3>
+      <div class="d-flex align-items-center">
+        <!-- カレントユーザーの投稿一覧のリンク　-->
+        <%= link_to "全ての投稿を見る>" %>
+      </div>
+    </div>
+    <% @coordinates.limit(6).each do |coordinate| %>
+    <div>
+      <%= link_to admin_coordinate_path(coordinate) do %>
+        <%= image_tag coordinate.get_coordinate_image(170,230) %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

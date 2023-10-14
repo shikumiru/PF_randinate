@@ -52,7 +52,7 @@
               <%= link_to "全てのブックマークを見る>" %>
             </div>
           </div>
-          <% @bookmarks.limit(4).each do |bookmark| %>
+          <% @bookmarks.limit(3).each do |bookmark| %>
             <div>
               <%= link_to coordinate_path(coordinate) do %>
                 <%= image_tag coordinate.get_coordinate_image(170,230) %>
