@@ -4,5 +4,13 @@ class Admin::CoordinatesController < ApplicationController
   end
 
   def show
+    @coordinate = Coordinate.find(params[:id])
+    @tags = @coordinate.tag_counts_on(:tags)
+  end
+  
+  def destroy
+    coordinate = Coordinate.find(params[:id])
+    coordinate.destroy
+    redirect_to admin_coordinates_path
   end
 end
