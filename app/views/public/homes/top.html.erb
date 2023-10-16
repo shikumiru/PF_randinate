@@ -25,7 +25,8 @@
               <% end %>
             </div>
             <div>
-              <%= link_to coordinate.user.name, user_path(coordinate.user) %><br>
+              <!-- ユーザー指定検索　-->
+              <%= link_to coordinate.user.name %><br>
               <!-- スタイルでスタイル検索　coordinate index scope -->
               <%= link_to coordinate.style_i18n %>
             </div>

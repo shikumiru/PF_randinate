@@ -21,10 +21,12 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update] do
       member do
         patch :deactivate
+        get :bookmarks
       end
     end
-    resources :coordinates
-    resources :bookmarks, only: [:index, :create, :destroy]
+    resources :coordinates do
+      resource :bookmarks, only: [:create, :destroy]
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

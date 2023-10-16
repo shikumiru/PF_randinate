@@ -7,10 +7,10 @@ class User < ApplicationRecord
   has_many :coordinates, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { in: 2..10 }
   validates :gender, presence: true
 
   enum gender: { male: 0, female: 1, other: 2 }
-  
+
   has_one_attached :profile_image
 end
