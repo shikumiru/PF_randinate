@@ -15,6 +15,9 @@ class Public::CoordinatesController < ApplicationController
 
   def index
     @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(10)
+    @mens_coordinates = Coordinate.mens.order(created_at: :desc).page(params[:page]).per(10)
+    @ladies_coordinates = Coordinate.ladies.order(created_at: :desc).page(params[:page]).per(10)
+    @unisex_coordinates = Coordinate.unisex.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

@@ -6,39 +6,66 @@
       </div>
     <% end %>
     <div class="col">
-      <div class="row m-3">
+      <div class="row m-3 d-flex justify-content-between">
         <h2 class="font-weight-bold bg-light px-3">コーディネート一覧</h2>
+        <div class="tabs align-items-center">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#mens">メンズ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#ladies">レディース</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#unisex">ユニセックス</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#all">オール</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="row mx-3">
-        <% @coordinates.each do |coordinate| %>
-          <div class="col-2 mx-4 mt-3">
-            <div class="d-flex flex-row">
-              <% if user_signed_in? %>
-                <%= link_to coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-                <div id="bookmark_btn_<%= coordinate.id %>">
-                  <%= render "public/bookmarks/btn", coordinate: coordinate %>
-                </div>
-              <% elsif admin_signed_in? %>
-                <%= link_to admin_coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-              <% end %>
-            </div>
-            <div>
-              <% if user_signed_in? %>
-                <%= link_to coordinate.user.name, user_path(coordinate.user) %><br>
-                <%= link_to coordinate.style_i18n %>
-              <% elsif admin_signed_in? %>
-                <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
-              <% end %>
-            </div>
+      <div class="tab-content">
+        <div id="mens" class="tab-pane fade">
+          <div class="row">
+            <% @mens_coordinates.each do |coordinate| %>
+              <%= render "index", coordinate: coordinate %>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-      <div class="row">
-        <%= paginate @coordinates %>
+          <div class="row">
+            <%= paginate @mens_coordinates %>
+          </div>
+        </div>
+        <div id="ladies" class="tab-pane fade">
+          <div class="row">
+            <% @ladies_coordinates.each do |coordinate| %>
+              <%= render "index", coordinate: coordinate %>
+            <% end %>
+          </div>
+          <div class="row">
+            <%= paginate @ladies_coordinates %>
+          </div>
+        </div>
+        <div id="unisex" class="tab-pane fade">
+          <div class="row">
+            <% @unisex_coordinates.each do |coordinate| %>
+              <%= render "index", coordinate: coordinate %>
+            <% end %>
+          </div>
+          <div class="row">
+            <%= paginate @unisex_coordinates %>
+          </div>
+        </div>
+        <div id="all" class="tab-pane fade show active">
+          <div class="row">
+            <% @coordinates.each do |coordinate| %>
+              <%= render "index", coordinate: coordinate %>
+            <% end %>
+          </div>
+          <div class="row">
+            <%= paginate @coordinates %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
