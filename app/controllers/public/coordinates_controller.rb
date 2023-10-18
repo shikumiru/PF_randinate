@@ -21,10 +21,7 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def index
-    @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(8)
-    @mens_coordinates = Coordinate.mens.order(created_at: :desc).page(params[:page]).per(8)
-    @ladies_coordinates = Coordinate.ladies.order(created_at: :desc).page(params[:page]).per(8)
-    @unisex_coordinates = Coordinate.unisex.order(created_at: :desc).page(params[:page]).per(8)
+    @coordinates = Coordinate.published.order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def show
@@ -38,6 +35,13 @@ class Public::CoordinatesController < ApplicationController
 
   def update
     @coordinate = Coordinate.find(params[:id])
+    
+    if params[:published].present?
+      @coordinate.is_published = :true
+    else
+      @coordinate.is_published = :false
+    end
+    
     if @coordinate.update(coordinate_params)
       redirect_to coordinate_path(@coordinate)
     else
