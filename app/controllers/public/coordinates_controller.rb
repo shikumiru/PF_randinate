@@ -6,6 +6,13 @@ class Public::CoordinatesController < ApplicationController
   def create
     @coordinate = Coordinate.new(coordinate_params)
     @coordinate.user_id = current_user.id
+
+    if params[:published].present?
+      @coordinate.is_published = :true
+    else
+      @coordinate.is_published = :false
+    end
+
     if @coordinate.save
       redirect_to coordinate_path(@coordinate)
     else
