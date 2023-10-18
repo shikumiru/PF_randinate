@@ -11,4 +11,10 @@ class Coordinate < ApplicationRecord
 
   # gem:acts_as_taggableの使用
   acts_as_taggable_on :tags
+
+  has_many :bookmarks, dependent: :destroy
+
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
+  end
 end

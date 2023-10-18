@@ -6,6 +6,13 @@ class Public::CoordinatesController < ApplicationController
   def create
     @coordinate = Coordinate.new(coordinate_params)
     @coordinate.user_id = current_user.id
+
+    if params[:published].present?
+      @coordinate.is_published = :true
+    else
+      @coordinate.is_published = :false
+    end
+
     if @coordinate.save
       redirect_to coordinate_path(@coordinate)
     else
@@ -15,6 +22,9 @@ class Public::CoordinatesController < ApplicationController
 
   def index
     @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(10)
+    @mens_coordinates = Coordinate.mens.order(created_at: :desc).page(params[:page]).per(10)
+    @ladies_coordinates = Coordinate.ladies.order(created_at: :desc).page(params[:page]).per(10)
+    @unisex_coordinates = Coordinate.unisex.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

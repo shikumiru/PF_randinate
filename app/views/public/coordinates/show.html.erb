@@ -7,11 +7,14 @@
         <%= link_to "コーディネートを削除", coordinate_path(@coordinate), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-lg" %>
       <% end %>
     </div>
-    <div class="col-8 offset-md-1">
-      <div class="row my-3">
-        <h2 class="font-weight-bold">コーディネート詳細</h2>
+    <div class="col">
+      <div class="d-flex align-items-center m-3">
+        <h2 class="font-weight-bold bg-light px-3 mr-3">コーディネート詳細</h2>
+        <div id="bookmark_btn_<%= @coordinate.id %>">
+          <%= render "public/bookmarks/btn", coordinate: @coordinate %>
+        </div>
       </div>
-      <div class="row">
+      <div class="row mx-3">
         <div class="col-5 d-flex justify-content-center">
           <%= image_tag @coordinate.get_coordinate_image(420,560) %>
         </div>
