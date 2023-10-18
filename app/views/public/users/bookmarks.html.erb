@@ -7,29 +7,16 @@
       </div>
       <div class="row mx-3">
         <% @bookmark_coordinates.each do |coordinate| %>
-          <div class="col-2 mx-4 mt-3">
+          <div class="col-2 m-3">
             <div class="d-flex flex-row">
-              <% if user_signed_in? %>
-                <%= link_to coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-                <div id="bookmark_btn_<%= coordinate.id %>">
-                  <%= render "public/bookmarks/btn", coordinate: coordinate %>
-                </div>
-              <% elsif admin_signed_in? %>
-                <%= link_to admin_coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
+              <%= link_to coordinate_path(coordinate) do %>
+                <%= image_tag coordinate.get_coordinate_image(150,200) %>
               <% end %>
+              <div id="bookmark_btn_<%= coordinate.id %>" class="ml-2">
+                <%= render "public/bookmarks/btn", coordinate: coordinate %>
+              </div>
             </div>
-            <div>
-              <% if user_signed_in? %>
-                <%= link_to coordinate.user.name, user_path(coordinate.user) %><br>
-                <%= link_to coordinate.style_i18n %>
-              <% elsif admin_signed_in? %>
-                <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
-              <% end %>
-            </div>
+            <div><%= link_to coordinate.user.name, user_path(coordinate.user) %></div>
           </div>
         <% end %>
       </div>

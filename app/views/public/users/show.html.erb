@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 my-3">
+    <div class="col-3 my-3">
       <h1 class="bg-light d-inline-block px-3">会員情報</h1>
     </div>
     <% if @user == current_user %>
@@ -26,45 +26,41 @@
         </tbody>
       </table>
     </div>
-
-      <div class="col-6 my-3">
-        <div class="d-flex justify-content-between">
-          <h3 class="bg-light px-3">投稿一覧</h3>
-          <div class="d-flex align-items-center">
-            <!-- カレントユーザーの投稿一覧のリンク　-->
-            <%= link_to "全ての投稿を見る>" %>
-          </div>
+    <div class="col-6 my-3">
+      <div class="d-flex justify-content-between">
+        <h3 class="bg-light px-3">投稿一覧</h3>
+        <div class="d-flex align-items-center">
+          <%= link_to "全ての投稿を見る>", posts_user_path(@user) %>
         </div>
-        <div class="row">
-          <% @coordinates.limit(3).each do |coordinate| %>
+      </div>
+      <div class="row">
+        <% @coordinates.each do |coordinate| %>
           <div class="col-4">
             <%= link_to coordinate_path(coordinate) do %>
               <%= image_tag coordinate.get_coordinate_image(170,230) %>
             <% end %>
           </div>
         <% end %>
+      </div>
+    </div>
+    <div class="col-6 my-3">
+      <div class="d-flex justify-content-between">
+        <h3 class="bg-light d-inline-block px-3">ブックマーク一覧</h3>
+        <div class="d-flex align-items-center">
+          <%= link_to "全てのブックマークを見る>", bookmarks_user_path(@user) %>
         </div>
       </div>
-
-
-      <div class="col-6 my-3">
-        <div class="d-flex justify-content-between">
-          <h3 class="bg-light d-inline-block px-3">ブックマーク一覧</h3>
-          <div class="d-flex align-items-center">
-            <%= link_to "全てのブックマークを見る>", bookmarks_user_path(@user) %>
-          </div>
-        </div>
-        <div class="row">
-          <% @bookmarks.limit(3).each do |bookmark| %>
+      <div class="row">
+        <% @bookmarks.each do |bookmark| %>
           <div class="col-4">
             <%= link_to coordinate_path(bookmark.coordinate) do %>
-              <%= image_tag bookmark.coordinate.get_coordinate_image(170,230) %>
+              <%= image_tag bookmark.coordinate.get_coordinate_image(170,230) %><br>
             <% end %>
-            <%= link_to bookmark.coordinate.user.name %>
+            <%= link_to bookmark.coordinate.user.name %><br>
+            <%= link_to bookmark.coordinate.style_i18n %>
           </div>
         <% end %>
-        </div>
       </div>
-
+    </div>
   </div>
 </div>

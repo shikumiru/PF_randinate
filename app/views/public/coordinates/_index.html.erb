@@ -4,9 +4,10 @@
       <%= link_to coordinate_path(coordinate) do %>
         <%= image_tag coordinate.get_coordinate_image(150,200) %>
       <% end %>
-      <div id="bookmark_btn_<%= coordinate.id %>">
-        <%= render "public/bookmarks/btn", coordinate: coordinate %>
-      </div>
+      <!-- タブメニューでブックマーク非同期が使えない -->
+      <!--<div id="bookmark_btn_<%#= coordinate.id %>">-->
+        <%#= render "public/bookmarks/btn", coordinate: coordinate %>
+      <!--</div>-->
     <% elsif admin_signed_in? %>
       <%= link_to admin_coordinate_path(coordinate) do %>
         <%= image_tag coordinate.get_coordinate_image(150,200) %>

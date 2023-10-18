@@ -17,19 +17,15 @@
         <h2 class="font-weight-bold">新着投稿</h2>
       </div>
       <div class="row">
-        <% @coordinates.limit(5).each do |coordinate| %>
-          <div class="col-2 p-3">
-            <div>
-              <%= link_to coordinate_path(coordinate) do %>
-                <%= image_tag coordinate.get_coordinate_image(150,200) %>
-              <% end %>
-            </div>
-            <div>
-              <!-- ユーザー指定検索　-->
-              <%= link_to coordinate.user.name %><br>
-              <!-- スタイルでスタイル検索　coordinate index scope -->
-              <%= link_to coordinate.style_i18n %>
-            </div>
+        <% @coordinates.each do |coordinate| %>
+          <div class="col-2 m-4">
+            <%= link_to coordinate_path(coordinate) do %>
+              <%= image_tag coordinate.get_coordinate_image(150,200) %><br>
+            <% end %>
+            <!-- ユーザー指定検索　-->
+            <%= link_to coordinate.user.name %><br>
+            <!-- スタイルでスタイル検索　coordinate index scope -->
+            <%= link_to coordinate.style_i18n %>
           </div>
         <% end %>
       </div>

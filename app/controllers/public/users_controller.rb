@@ -1,8 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @coordinates = @user.coordinates
-    @bookmarks = @user.bookmarks
+    @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(3)
+    @bookmarks = @user.bookmarks.order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def edit
@@ -26,6 +26,13 @@ class Public::UsersController < ApplicationController
     reset_session
     flash[:notice] = "退会処理を完了しました。ご利用ありがとうございました。"
     redirect_to root_path
+  end
+
+  def posts
+    user = current_user
+    @coordinates = user.coordinates.order(created_at: :desc).page(params[:page]).per(10)
+    @published_coordinates = user.coordinates.published.order(created_at: :desc).page(params[:page]).per(10)
+    @draft_coordinates = user.coordinates.draft.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def bookmarks

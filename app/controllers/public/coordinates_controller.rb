@@ -21,10 +21,10 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def index
-    @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(10)
-    @mens_coordinates = Coordinate.mens.order(created_at: :desc).page(params[:page]).per(10)
-    @ladies_coordinates = Coordinate.ladies.order(created_at: :desc).page(params[:page]).per(10)
-    @unisex_coordinates = Coordinate.unisex.order(created_at: :desc).page(params[:page]).per(10)
+    @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(8)
+    @mens_coordinates = Coordinate.mens.order(created_at: :desc).page(params[:page]).per(8)
+    @ladies_coordinates = Coordinate.ladies.order(created_at: :desc).page(params[:page]).per(8)
+    @unisex_coordinates = Coordinate.unisex.order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def show

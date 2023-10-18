@@ -17,4 +17,7 @@ class Coordinate < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)
   end
+  
+  scope :published, -> { where(is_published: true) }
+  scope :draft, -> { where(is_published: false) }
 end
