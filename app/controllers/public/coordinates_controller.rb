@@ -21,7 +21,15 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def index
-    @coordinates = Coordinate.published.order(created_at: :desc).page(params[:page]).per(8)
+    if params[:style] == "mens"
+      @coordinates = Coordinate.mens.published.order(created_at: :desc).page(params[:page]).per(8)
+    elsif params[:style] == "ladies"
+      @coordinates = Coordinate.ladies.published.order(created_at: :desc).page(params[:page]).per(8)
+    elsif params[:style] == "unisex"
+      @coordinates = Coordinate.unisex.published.order(created_at: :desc).page(params[:page]).per(8)
+    else
+      @coordinates = Coordinate.published.order(created_at: :desc).page(params[:page]).per(8)
+    end
   end
 
   def show
@@ -35,13 +43,13 @@ class Public::CoordinatesController < ApplicationController
 
   def update
     @coordinate = Coordinate.find(params[:id])
-    
+
     if params[:published].present?
       @coordinate.is_published = :true
     else
       @coordinate.is_published = :false
     end
-    
+
     if @coordinate.update(coordinate_params)
       redirect_to coordinate_path(@coordinate)
     else
