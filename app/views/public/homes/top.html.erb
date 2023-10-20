@@ -20,8 +20,7 @@
             <%= link_to coordinate_path(coordinate) do %>
               <%= image_tag coordinate.get_coordinate_image(150,200) %><br>
             <% end %>
-            <!-- ユーザー指定検索　-->
-            <%= link_to coordinate.user.name,  %><br>
+            <%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %><br>
             <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %>
           </div>
         <% end %>
