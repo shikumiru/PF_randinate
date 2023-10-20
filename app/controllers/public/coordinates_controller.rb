@@ -21,11 +21,11 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def index
-    if params[:style] == "mens"
+    if params[:style] == "メンズ" || params[:style] == "mens"
       @coordinates = Coordinate.mens.published.order(created_at: :desc).page(params[:page]).per(8)
-    elsif params[:style] == "ladies"
+    elsif params[:style] == "レディース" || params[:style] == "ladies"
       @coordinates = Coordinate.ladies.published.order(created_at: :desc).page(params[:page]).per(8)
-    elsif params[:style] == "unisex"
+    elsif params[:style] == "ユニセックス" || params[:style] == "unisex"
       @coordinates = Coordinate.unisex.published.order(created_at: :desc).page(params[:page]).per(8)
     else
       @coordinates = Coordinate.published.order(created_at: :desc).page(params[:page]).per(8)

@@ -21,9 +21,8 @@
               <%= image_tag coordinate.get_coordinate_image(150,200) %><br>
             <% end %>
             <!-- ユーザー指定検索　-->
-            <%= link_to coordinate.user.name %><br>
-            <!-- スタイルでスタイル検索　coordinate index scope -->
-            <%= link_to coordinate.style_i18n %>
+            <%= link_to coordinate.user.name,  %><br>
+            <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %>
           </div>
         <% end %>
       </div>

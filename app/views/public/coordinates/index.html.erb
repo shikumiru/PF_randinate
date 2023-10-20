@@ -7,9 +7,9 @@
       <div class="row m-3 d-flex justify-content-between">
         <h2 class="font-weight-bold bg-light px-3">コーディネート一覧</h2>
         <div class="btn-group" role="group">
-          <%= link_to "メンズ", coordinates_path(style: "mens"), class: "btn btn-secondary pt-2" %>
-          <%= link_to "レディース", coordinates_path(style: "ladies"), class: "btn btn-secondary pt-2" %>
-          <%= link_to "ユニセックス", coordinates_path(style: "unisex"), class: "btn btn-secondary pt-2" %>
+          <% Coordinate.styles_i18n.values.each do |style| %>
+            <%= link_to style, coordinates_path(style: style), class: "btn btn-secondary pt-2" %>
+          <% end %>
         </div>
       </div>
       <div class="row">
