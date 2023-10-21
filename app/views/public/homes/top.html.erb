@@ -21,7 +21,10 @@
               <%= image_tag coordinate.get_coordinate_image(150,200) %><br>
             <% end %>
             <%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %><br>
-            <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %>
+            <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %><br>
+            <% coordinate.tag_list.first(2).each do |tag| %>
+              <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
+            <% end %>
           </div>
         <% end %>
       </div>

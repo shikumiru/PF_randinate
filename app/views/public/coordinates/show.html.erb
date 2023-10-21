@@ -19,11 +19,11 @@
         <div class="col-5 offset-1">
           <div class="row mt-3">
             <div class="col-md-5 text-center border border-dark rounded">ニックネーム</div>
-            <div class="col-md-7 text-center"><%= @coordinate.user.name %></div>
+            <div class="col-md-7 text-center"><%= link_to @coordinate.user.name, coordinates_path(user_id: @coordinate.user.id) %></div>
           </div>
           <div class="row mt-3">
             <div class="col-md-5 text-center border border-dark rounded">スタイル</div>
-            <div class="col-md-7 text-center"><%= @coordinate.style_i18n %></div>
+            <div class="col-md-7 text-center"><%= link_to @coordinate.style_i18n, coordinates_path(style: @coordinate.style) %></div>
           </div>
           <div class="row">
             <div class="col-5 text-center border border-dark rounded mt-3">紹介</div>
@@ -33,13 +33,19 @@
           </div>
           <div class="row">
             <div class="col-4 text-center border border-dark rounded mt-3">タグ</div>
-            <div class="col-12 mt-3">
-              <% @tags.each do |tag| %>
-                <span class="badge badge-secondary">
-                  <%= tag.name %>
-                </span>
-              <% end %>
-            </div>
+          </div>
+          <div class="row mt-3">
+            <% if @tags.present? %>
+              <div class="d-flex flex-wrap">
+                <% @tags.each do |tag| %>
+                  <h5><span class="badge badge-secondary mr-2 mb-2">
+                    <%= link_to "#{tag.name}(#{tag.taggings_count})", coordinates_path(tag_name: tag.name), class: "text-white" %>
+                  </span></h5>
+                <% end %>
+              </div>
+            <% else %>
+              <p>タグ未登録</p>
+            <% end %>
           </div>
         </div>
       </div>

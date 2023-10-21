@@ -5,7 +5,13 @@
     <% end %>
     <div class="col">
       <div class="row m-3 d-flex justify-content-between">
-        <h2 class="font-weight-bold bg-light px-3">コーディネート一覧</h2>
+        <% if params[:user_id] %>
+          <h3 class="font-weight-bold bg-light px-3"><%= @user.name %>さんの投稿一覧</h3>
+        <% elsif params[:tag_name] %>
+          <h3 class="font-weight-bold bg-light px-3">タグ:<%= params[:tag_name] %>の投稿一覧</h3>
+        <% else %>
+          <h3 class="font-weight-bold bg-light px-3">コーディネート一覧</h3>
+        <% end %>
         <div class="btn-group" role="group">
           <% Coordinate.styles_i18n.values.each do |style| %>
             <%= link_to style, coordinates_path(style: style), class: "btn btn-secondary pt-2" %>
@@ -32,7 +38,10 @@
             <div>
               <% if user_signed_in? %>
                 <%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %><br>
-                <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %>
+                <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %><br>
+                <% coordinate.tag_list.first(2).each do |tag| %>
+                  <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
+                <% end %>
               <% elsif admin_signed_in? %>
                 <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
               <% end %>

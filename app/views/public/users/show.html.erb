@@ -37,7 +37,10 @@
         <% @coordinates.each do |coordinate| %>
           <div class="col-4">
             <%= link_to coordinate_path(coordinate) do %>
-              <%= image_tag coordinate.get_coordinate_image(170,230) %>
+              <%= image_tag coordinate.get_coordinate_image(170,230) %><br>
+            <% end %>
+            <% coordinate.tag_list.first(2).each do |tag| %>
+              <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
             <% end %>
           </div>
         <% end %>
@@ -56,7 +59,10 @@
             <%= link_to coordinate_path(bookmark.coordinate) do %>
               <%= image_tag bookmark.coordinate.get_coordinate_image(170,230) %><br>
             <% end %>
-            <%= link_to bookmark.coordinate.user.name %>
+            <%= link_to bookmark.coordinate.user.name, coordinates_path(user_id: bookmark.coordinate.user.id) %><br>
+            <% bookmark.coordinate.tag_list.first(2).each do |tag| %>
+              <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
+            <% end %>
           </div>
         <% end %>
       </div>

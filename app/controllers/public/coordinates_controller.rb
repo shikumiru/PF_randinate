@@ -22,8 +22,8 @@ class Public::CoordinatesController < ApplicationController
 
   def index
     if params[:user_id]
-      user = User.find(params[:user_id])
-      user_posts = user.coordinates
+      @user = User.find(params[:user_id])
+      user_posts = @user.coordinates
       @coordinates = user_posts.published.order(created_at: :desc).page(params[:page]).per(8)
     elsif params[:style] == "メンズ" || params[:style] == "mens"
       @coordinates = Coordinate.mens.published.order(created_at: :desc).page(params[:page]).per(8)
@@ -31,6 +31,8 @@ class Public::CoordinatesController < ApplicationController
       @coordinates = Coordinate.ladies.published.order(created_at: :desc).page(params[:page]).per(8)
     elsif params[:style] == "ユニセックス" || params[:style] == "unisex"
       @coordinates = Coordinate.unisex.published.order(created_at: :desc).page(params[:page]).per(8)
+    elsif params[:tag_name]
+      @coordinates = Coordinate.tagged_with(params[:tag_name]).published.order(created_at: :desc).page(params[:page]).per(8)
     else
       @coordinates = Coordinate.published.order(created_at: :desc).page(params[:page]).per(8)
     end
