@@ -1,6 +1,8 @@
-<div class="col-3 d-flex flex-column">
-  <button type="button" class="btn btn-primary btn-lg mb-3">メンズ<br>ランダム</button>
-  <button type="button" class="btn btn-primary btn-lg mb-3">レディース<br>ランダム</button>
-  <button type="button" class="btn btn-primary btn-lg mb-3">ユニセックス<br>ランダム</button>
+<div class="col-3 d-flex flex-column mt-5">
+  <% Coordinate.styles_i18n.values.each do |style| %>
+    <%= link_to coordinates_path(style: style), class: "btn btn-primary btn-lg mb-3" do %>
+      <%= style %><br>ランダム
+    <% end %>
+  <% end %>
   <%= link_to "コーディネート投稿", new_coordinate_path, class: "btn btn-success btn-lg mb-3" %>
 </div>
