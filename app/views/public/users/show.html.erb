@@ -3,7 +3,7 @@
     <div class="col-3 my-3">
       <h1 class="bg-light d-inline-block px-3">会員情報</h1>
     </div>
-    <% if @user == current_user %>
+    <% if @user == current_user && !@user.guest_user? %>
       <div class="col-3 my-3">
         <%= link_to "会員情報を編集", edit_user_path(@user), class: "btn btn-success btn-lg" %>
       </div>

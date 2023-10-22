@@ -40,6 +40,9 @@
                 </li>
               <% else %>
                 <li class="mr-3">
+                  <%= link_to "ゲストログイン（閲覧用）", public_guest_sign_in_path, class: "nav-link text-light btn btn-secondary", method: :post %>
+                </li>
+                <li class="mr-3">
                   <%= link_to "コーディネート一覧", coordinates_path, class: "nav-link text-light btn btn-secondary" %>
                 </li>
                 <li class="mr-3">
