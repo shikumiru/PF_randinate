@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     end
     resources :coordinates do
       resource :bookmarks, only: [:create, :destroy]
+      collection do
+        get :random
+      end
     end
   end
 

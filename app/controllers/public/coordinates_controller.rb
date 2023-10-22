@@ -69,6 +69,17 @@ class Public::CoordinatesController < ApplicationController
     redirect_to coordinates_path
   end
 
+  def random
+    if params[:style] == "メンズ"
+      @random = Coordinate.find(Coordinate.mens.published.pluck(:id).shuffle[0])
+    elsif params[:style] == "レディース"
+      @random = Coordinate.find(Coordinate.ladies.published.pluck(:id).shuffle[0])
+    elsif params[:style] == "ユニセックス"
+      @random = Coordinate.find(Coordinate.unisex.published.pluck(:id).shuffle[0])
+    end
+    @tags = @random.tag_counts_on(:tags)
+  end
+
   private
 
   def coordinate_params
