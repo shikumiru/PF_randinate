@@ -1,57 +1,6 @@
 <div class="container my-5">
   <div class="row">
-    <% unless admin_signed_in? %>
-      <%= render 'public/coordinates/button' %>
-    <% end %>
-    <div class="col">
-      <div class="row m-3 d-flex justify-content-between">
-        <% if params[:user_id] %>
-          <h3 class="font-weight-bold bg-light px-3"><%= @user.name %>さんの投稿一覧</h3>
-        <% elsif params[:tag_name] %>
-          <h3 class="font-weight-bold bg-light px-3">タグ:<%= params[:tag_name] %>の投稿一覧</h3>
-        <% else %>
-          <h3 class="font-weight-bold bg-light px-3">コーディネート一覧</h3>
-        <% end %>
-        <div class="btn-group" role="group">
-          <% Coordinate.styles_i18n.values.each do |style| %>
-            <%= link_to style, coordinates_path(style: style), class: "btn btn-secondary pt-2" %>
-          <% end %>
-        </div>
-      </div>
-      <div class="row">
-        <% @coordinates.each do |coordinate| %>
-          <div class="col-2 m-4">
-            <div class="d-flex flex-row">
-              <% if admin_signed_in? %>
-                <%= link_to admin_coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-              <% else %>
-                <%= link_to coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-                <div id="bookmark_btn_<%= coordinate.id %>">
-                  <%= render "public/bookmarks/btn", coordinate: coordinate %>
-                </div>
-              <% end %>
-            </div>
-            <div>
-              <% if admin_signed_in? %>
-                <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
-              <% else %>
-                <%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %><br>
-                <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %><br>
-                <% coordinate.tag_list.first(2).each do |tag| %>
-                  <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="row m-3">
-        <%= paginate @coordinates %>
-      </div>
-    </div>
+    <%= render 'public/coordinates/button' %>
+    <%= render 'public/coordinates/index', user: @user, coordinates: @coordinates %>
   </div>
 </div>

@@ -1,42 +1,5 @@
 <div class="container my-5">
   <div class="row">
-    <% if user_signed_in? %>
-    <div class="col-3 d-flex flex-column">
-      <%= render 'public/coordinates/button' %>
-    </div>
-    <% end %>
-    <div class="col">
-      <div class="row my-3">
-        <h2 class="font-weight-bold bg-light px-3">コーディネート一覧</h2>
-      </div>
-      <div class="row">
-        <% @coordinates.each do |coordinate| %>
-          <div class="col-2 p-3">
-            <div>
-              <% if user_signed_in? %>
-                <%= link_to coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-              <% elsif admin_signed_in? %>
-                <%= link_to admin_coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-              <% end %>
-            </div>
-            <div>
-              <% if user_signed_in? %>
-                <%= link_to coordinate.user.name, user_path(coordinate.user) %><br>
-                <%= link_to coordinate.style_i18n %>
-              <% elsif admin_signed_in? %>
-                <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="row">
-        <%= paginate @coordinates %>
-      </div>
-    </div>
+    <%= render 'public/coordinates/index', user: @user, coordinates: @coordinates %>
   </div>
 </div>

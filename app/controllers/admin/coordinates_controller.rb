@@ -1,6 +1,11 @@
 class Admin::CoordinatesController < ApplicationController
   def index
-    @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(12)
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(8)
+    else
+      @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(8)
+    end
   end
 
   def show
