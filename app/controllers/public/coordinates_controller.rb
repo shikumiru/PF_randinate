@@ -1,4 +1,6 @@
 class Public::CoordinatesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit]
+
   def new
     @coordinate = Coordinate.new
   end

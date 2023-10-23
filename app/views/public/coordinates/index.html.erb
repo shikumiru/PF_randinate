@@ -1,6 +1,6 @@
 <div class="container my-5">
   <div class="row">
-    <% if user_signed_in? %>
+    <% unless admin_signed_in? %>
       <%= render 'public/coordinates/button' %>
     <% end %>
     <div class="col">
@@ -22,28 +22,28 @@
         <% @coordinates.each do |coordinate| %>
           <div class="col-2 m-4">
             <div class="d-flex flex-row">
-              <% if user_signed_in? %>
+              <% if admin_signed_in? %>
+                <%= link_to admin_coordinate_path(coordinate) do %>
+                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
+                <% end %>
+              <% else %>
                 <%= link_to coordinate_path(coordinate) do %>
                   <%= image_tag coordinate.get_coordinate_image(150,200) %>
                 <% end %>
                 <div id="bookmark_btn_<%= coordinate.id %>">
                   <%= render "public/bookmarks/btn", coordinate: coordinate %>
                 </div>
-              <% elsif admin_signed_in? %>
-                <%= link_to admin_coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
               <% end %>
             </div>
             <div>
-              <% if user_signed_in? %>
+              <% if admin_signed_in? %>
+                <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
+              <% else %>
                 <%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %><br>
                 <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %><br>
                 <% coordinate.tag_list.first(2).each do |tag| %>
                   <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
                 <% end %>
-              <% elsif admin_signed_in? %>
-                <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
               <% end %>
             </div>
           </div>
