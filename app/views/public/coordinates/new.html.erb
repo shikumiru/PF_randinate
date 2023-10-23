@@ -4,44 +4,5 @@
       <h2 class="bg-light d-inline-block px-3">コーディネート投稿</h2>
     </div>
   </div>
-  <%= form_with model: @coordinate, url: coordinates_path do |f| %>
-  <div class="row">
-    <div class="col-5">
-      <div class="form-group">
-        <%= f.label :コーディネート画像, class: "font-weight-bold" %><br>
-        <%= f.file_field :coordinate_image, class: "form-control-image", accept: "image/*", id: "form" %>
-      </div>
-      <div id="image_preview" class="d-flex justify-content-center"></div>
-    </div>
-    <div class="col-7">
-      <div class="form-group">
-        <p class="font-weight-bold">スタイル</p>
-        <div class="form-check form-check-inline">
-          <%= f.radio_button :style, Coordinate.styles.key(0), class: "form-check-input mr-3" %>
-          <%= f.label :style_mens, Coordinate.styles_i18n[:mens], class: "form-check-label mr-3" %>
-        </div>
-        <div class="form-check form-check-inline">
-          <%= f.radio_button :style, Coordinate.styles.key(1), class: "form-check-input mr-3" %>
-          <%= f.label :style_ladies, Coordinate.styles_i18n[:ladies], class: "form-check-label mr-3" %>
-        </div>
-        <div class="form-check form-check-inline">
-          <%= f.radio_button :style, Coordinate.styles.key(2), class: "form-check-input mr-3" %>
-          <%= f.label :style_unisex, Coordinate.styles_i18n[:unisex], class: "form-check-label" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :紹介, class: "font-weight-bold" %><br>
-        <%= f.text_area :introduction, class: "form-control", rows: "10" %>
-      </div>
-      <div class="form-group form-group_tags">
-        <%= f.label :tag_list, "タグ", class: "font-weight-bold" %>
-        <%= f.text_field :tag_list, value: @coordinate.tag_list.join(","), class: "form-control", data: { role: "tagsinput" } %>
-      </div>
-      <div class="form-group d-flex">
-        <%= f.submit "投稿（公開）", name: "published", class: "btn btn-lg btn-primary flex-fill mr-2" %>
-        <%= f.submit "下書き（非公開）", name: "draft", class: "btn btn-lg btn-success flex-fill ml-2" %>
-      </div>
-    </div>
-  </div>
-  <% end %>
+  <%= render 'public/coordinates/form', coordinate: @coordinate %>
 </div>

@@ -43,12 +43,14 @@
         <%= link_to "全ての投稿を見る>" %>
       </div>
     </div>
-    <% @coordinates.limit(6).each do |coordinate| %>
-    <div>
-      <%= link_to admin_coordinate_path(coordinate) do %>
-        <%= image_tag coordinate.get_coordinate_image(170,230) %>
-      <% end %>
-    </div>
+    <div class="row mt-3">
+      <% @coordinates.limit(6).each do |coordinate| %>
+      <div class="col-2">
+        <%= link_to admin_coordinate_path(coordinate) do %>
+          <%= image_tag coordinate.get_coordinate_image(170,230) %>
+        <% end %>
+      </div>
     <% end %>
+    </div>
   </div>
 </div>
