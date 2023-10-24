@@ -1,7 +1,8 @@
 class Coordinate < ApplicationRecord
   belongs_to :user
 
-  validates :introduction, length: { maximum: 75 }
+  validates :style, presence: true
+  validates :introduction, length: { maximum: 180 }
 
   enum style: { mens: 0, ladies: 1, unisex: 2 }
 
@@ -9,6 +10,10 @@ class Coordinate < ApplicationRecord
   has_one_attached :coordinate_image
 
   def get_coordinate_image(width, height)
+    unless coordinate_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      coordinate_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
+    end
     coordinate_image.variant(resize_to_limit: [width, height]).processed
   end
 
