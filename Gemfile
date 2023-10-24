@@ -63,6 +63,8 @@ gem 'devise-i18n-views'
 gem 'acts-as-taggable-on'
 
 gem 'dotenv-rails'
+gem 'activestorage-validator'
+
 group :production do
   gem 'mysql2'
 end

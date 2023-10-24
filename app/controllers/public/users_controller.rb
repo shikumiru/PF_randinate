@@ -18,8 +18,7 @@ class Public::UsersController < ApplicationController
       flash[:notice] = "会員情報を変更しました。"
       redirect_to user_path(@user)
     else
-      flash[:notice] = "変更内容が正しくありません。"
-      redirect_to "edit"
+      render "edit"
     end
   end
 
