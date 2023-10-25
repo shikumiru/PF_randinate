@@ -1,13 +1,15 @@
 <div class="col">
   <div class="row m-3 d-flex justify-content-between">
-    <% if params[:user_id] %>
-      <h3 class="font-weight-bold bg-light px-3"><%= user.name %>さんの投稿一覧</h3>
-    <% elsif params[:tag_name] %>
-      <h3 class="font-weight-bold bg-light px-3">タグ:<%= params[:tag_name] %>の投稿一覧</h3>
+    <% if admin_signed_in? %>
+      <h3>投稿一覧</h3>
     <% else %>
-      <h3 class="font-weight-bold bg-light px-3">コーディネート一覧</h3>
-    <% end %>
-    <% if user_signed_in? %>
+      <% if params[:user_id] %>
+        <h3 class="font-weight-bold bg-light px-3"><%= user.name %>さんの投稿一覧</h3>
+      <% elsif params[:tag_name] %>
+        <h3 class="font-weight-bold bg-light px-3">タグ:<%= params[:tag_name] %>の投稿一覧</h3>
+      <% else %>
+        <h3 class="font-weight-bold bg-light px-3">コーディネート一覧</h3>
+      <% end %>
       <div class="btn-group" role="group">
         <% Coordinate.styles_i18n.values.each do |style| %>
           <%= link_to style, coordinates_path(style: style), class: "btn btn-secondary pt-2" %>

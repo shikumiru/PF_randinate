@@ -106,7 +106,7 @@ Coordinate.find_or_create_by!(introduction: "青のジャージです") do |coor
   coordinate.tag_list.add("ジャージ")
 end
 
-# ブックマーク機能の
+# ブックマーク機能の追加
 
 users = User.all
 coordinates = Coordinate.all

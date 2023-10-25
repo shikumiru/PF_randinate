@@ -1,5 +1,6 @@
 class Public::CoordinatesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit]
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def new
     @coordinate = Coordinate.new
@@ -82,5 +83,12 @@ class Public::CoordinatesController < ApplicationController
 
   def coordinate_params
     params.require(:coordinate).permit(:coordinate_image, :style, :introduction, :tag_list)
+  end
+
+  def is_matching_login_user
+    @coordinate = Coordinate.find(params[:id])
+    unless @coordinate.user == current_user
+      redirect_to coordinates_path
+    end
   end
 end
