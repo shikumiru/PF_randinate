@@ -1,28 +1,28 @@
 <div class="container my-5">
   <div class="row">
     <div class="col">
-      <% unless current_user.coordinates.present? %>
-        <h1>投稿はまだありません</h1>
-      <% else %>
-        <div class="row m-3 d-flex justify-content-between">
-          <h2 class="bg-light p-2 mr-auto">投稿一覧</h2>
-          <%= link_to random_coordinates_path(my: "posts"), class: "btn btn-info" do %>
-            マイコーディネート<br>ランダム
-          <% end %>
-          <div class="tabs align-items-center ml-3">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#all">全投稿</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#published">公開中</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#draft">非公開</a>
-              </li>
-            </ul>
-          </div>
+      <div class="row m-3 d-flex justify-content-between">
+        <h2 class="bg-light p-2 mr-auto">投稿一覧</h2>
+        <%= link_to random_coordinates_path(my: "posts"), class: "btn btn-info" do %>
+          マイコーディネート<br>ランダム
+        <% end %>
+        <div class="tabs align-items-center ml-3">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#all">全投稿</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#published">公開中</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#draft">非公開</a>
+            </li>
+          </ul>
         </div>
+      </div>
+      <% unless current_user.coordinates.present? %>
+        <h1 class="m-3">投稿はまだありません</h1>
+      <% else %>
         <div class="tab-content">
           <div id="all" class="tab-pane fade show active">
             <div class="row">
