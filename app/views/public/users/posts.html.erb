@@ -1,66 +1,73 @@
 <div class="container my-5">
   <div class="row">
     <div class="col">
-      <div class="row m-3 d-flex justify-content-between">
-        <h2 class="bg-light px-3">投稿一覧</h2>
-        <div class="tabs align-items-center">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#all">全投稿</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#published">公開中</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#draft">非公開</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="tab-content">
-        <div id="all" class="tab-pane fade show active">
-          <div class="row">
-            <% @coordinates.each do |coordinate| %>
-              <div class="col-2 m-3">
-                <%= link_to coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-          <div class="row">
-            <%= paginate @coordinates %>
+      <% unless current_user.coordinates.present? %>
+        <h1>投稿はまだありません</h1>
+      <% else %>
+        <div class="row m-3 d-flex justify-content-between">
+          <h2 class="bg-light p-2 mr-auto">投稿一覧</h2>
+          <%= link_to random_coordinates_path(my: "posts"), class: "btn btn-info" do %>
+            マイコーディネート<br>ランダム
+          <% end %>
+          <div class="tabs align-items-center ml-3">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#all">全投稿</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#published">公開中</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#draft">非公開</a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div id="published" class="tab-pane fade">
-          <div class="row">
-            <% @published_coordinates.each do |coordinate| %>
-              <div class="col-2 m-3">
-                <%= link_to coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-              </div>
-            <% end %>
+        <div class="tab-content">
+          <div id="all" class="tab-pane fade show active">
+            <div class="row">
+              <% @coordinates.each do |coordinate| %>
+                <div class="col-2 m-3">
+                  <%= link_to coordinate_path(coordinate) do %>
+                    <%= image_tag coordinate.get_coordinate_image(150,200) %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="row">
+              <%= paginate @coordinates %>
+            </div>
           </div>
-          <div class="row">
-            <%= paginate @published_coordinates %>
+          <div id="published" class="tab-pane fade">
+            <div class="row">
+              <% @published_coordinates.each do |coordinate| %>
+                <div class="col-2 m-3">
+                  <%= link_to coordinate_path(coordinate) do %>
+                    <%= image_tag coordinate.get_coordinate_image(150,200) %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="row">
+              <%= paginate @published_coordinates %>
+            </div>
+          </div>
+          <div id="draft" class="tab-pane fade">
+            <div class="row">
+              <% @draft_coordinates.each do |coordinate| %>
+                <div class="col-2 m-3">
+                  <%= link_to coordinate_path(coordinate) do %>
+                    <%= image_tag coordinate.get_coordinate_image(150,200) %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="row">
+              <%= paginate @draft_coordinates %>
+            </div>
           </div>
         </div>
-        <div id="draft" class="tab-pane fade">
-          <div class="row">
-            <% @draft_coordinates.each do |coordinate| %>
-              <div class="col-2 m-3">
-                <%= link_to coordinate_path(coordinate) do %>
-                  <%= image_tag coordinate.get_coordinate_image(150,200) %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-          <div class="row">
-            <%= paginate @draft_coordinates %>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

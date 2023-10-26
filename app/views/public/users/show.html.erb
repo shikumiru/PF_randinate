@@ -33,18 +33,22 @@
           <%= link_to "全ての投稿を見る>", posts_user_path(@user) %>
         </div>
       </div>
-      <div class="row mt-3">
-        <% @coordinates.each do |coordinate| %>
-          <div class="col-4">
-            <%= link_to coordinate_path(coordinate) do %>
-              <%= image_tag coordinate.get_coordinate_image(170,230) %><br>
-            <% end %>
-            <% coordinate.tag_list.first(2).each do |tag| %>
-              <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <% unless current_user.coordinates.present? %>
+        <h3 class="m-3">投稿はまだありません</h3>
+      <% else %>
+        <div class="row mt-3">
+          <% @coordinates.each do |coordinate| %>
+            <div class="col-4">
+              <%= link_to coordinate_path(coordinate) do %>
+                <%= image_tag coordinate.get_coordinate_image(170,230) %><br>
+              <% end %>
+              <% coordinate.tag_list.first(2).each do |tag| %>
+                <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="col-6 my-3">
       <div class="d-flex justify-content-between">
@@ -53,19 +57,23 @@
           <%= link_to "全てのブックマークを見る>", bookmarks_user_path(@user) %>
         </div>
       </div>
-      <div class="row mt-3">
-        <% @bookmarks.each do |bookmark| %>
-          <div class="col-4">
-            <%= link_to coordinate_path(bookmark.coordinate) do %>
-              <%= image_tag bookmark.coordinate.get_coordinate_image(170,230) %><br>
-            <% end %>
-            <%= link_to bookmark.coordinate.user.name, coordinates_path(user_id: bookmark.coordinate.user.id) %><br>
-            <% bookmark.coordinate.tag_list.first(2).each do |tag| %>
-              <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <% unless current_user.bookmarks.present? %>
+        <h3 class="m-3">ブックマークはまだありません</h3>
+      <% else %>
+        <div class="row mt-3">
+          <% @bookmarks.each do |bookmark| %>
+            <div class="col-4">
+              <%= link_to coordinate_path(bookmark.coordinate) do %>
+                <%= image_tag bookmark.coordinate.get_coordinate_image(170,230) %><br>
+              <% end %>
+              <%= link_to bookmark.coordinate.user.name, coordinates_path(user_id: bookmark.coordinate.user.id) %><br>
+              <% bookmark.coordinate.tag_list.first(2).each do |tag| %>
+                <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

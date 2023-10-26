@@ -1,8 +1,18 @@
 <div class="col-3 d-flex flex-column mt-5">
+  <%= link_to "コーディネート投稿", new_coordinate_path, class: "btn btn-success btn-lg mb-3" %>
   <% Coordinate.styles_i18n.values.each do |style| %>
     <%= link_to random_coordinates_path(style: style), class: "btn btn-primary btn-lg mb-3" do %>
       <%= style %><br>ランダム
     <% end %>
   <% end %>
-  <%= link_to "コーディネート投稿", new_coordinate_path, class: "btn btn-success btn-lg mb-3" %>
+  <% if current_user.coordinates.present? %>
+    <%= link_to random_coordinates_path(my: "posts"), class: "btn btn-info btn-lg mb-3" do %>
+      マイコーディネート<br>ランダム
+    <% end %>
+  <% end %>
+  <% if current_user.bookmarks.present? %>
+    <%= link_to random_coordinates_path(my: "bookmarks"), class: "btn btn-info btn-lg" do %>
+      マイブックマーク<br>ランダム
+    <% end %>
+  <% end %>
 </div>
