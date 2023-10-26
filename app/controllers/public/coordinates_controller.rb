@@ -75,6 +75,12 @@ class Public::CoordinatesController < ApplicationController
       @random = Coordinate.find(Coordinate.ladies.published.pluck(:id).shuffle[0])
     elsif params[:style] == "ユニセックス"
       @random = Coordinate.find(Coordinate.unisex.published.pluck(:id).shuffle[0])
+    elsif params[:my] == "posts"
+      user = current_user
+      @random = Coordinate.find(user.coordinates.pluck(:id).shuffle[0])
+    elsif params[:my] == "bookmarks"
+      bookmarks = Bookmark.where(user_id: current_user.id).pluck(:coordinate_id)
+      @random = Coordinate.find(bookmarks.shuffle[0])
     end
     @tags = @random.tag_counts_on(:tags)
   end
