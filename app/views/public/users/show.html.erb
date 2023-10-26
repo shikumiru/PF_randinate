@@ -34,7 +34,7 @@
         </div>
       </div>
       <% unless current_user.coordinates.present? %>
-        <h3 class="m-3">投稿はまだありません</h3>
+        <h3 class="m-3">投稿はありません</h3>
       <% else %>
         <div class="row mt-3">
           <% @coordinates.each do |coordinate| %>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <% unless current_user.bookmarks.present? %>
-        <h3 class="m-3">ブックマークはまだありません</h3>
+        <h3 class="m-3">ブックマークはありません</h3>
       <% else %>
         <div class="row mt-3">
           <% @bookmarks.each do |bookmark| %>

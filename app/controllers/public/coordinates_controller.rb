@@ -65,7 +65,7 @@ class Public::CoordinatesController < ApplicationController
   def destroy
     coordinate = Coordinate.find(params[:id])
     coordinate.destroy
-    redirect_to coordinates_path
+    redirect_to posts_user_path(current_user)
   end
 
   def random
