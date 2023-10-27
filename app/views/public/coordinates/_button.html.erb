@@ -5,14 +5,16 @@
       <%= style %><br>ランダム
     <% end %>
   <% end %>
-  <% if current_user.coordinates.present? %>
-    <%= link_to random_coordinates_path(my: "posts"), class: "btn btn-info btn-lg mb-3" do %>
-      マイコーディネート<br>ランダム
+  <% if user_signed_in? %>
+    <% if current_user.coordinates.present? %>
+      <%= link_to random_coordinates_path(my: "posts"), class: "btn btn-info btn-lg mb-3" do %>
+        マイコーディネート<br>ランダム
+      <% end %>
     <% end %>
-  <% end %>
-  <% if current_user.bookmarks.present? %>
-    <%= link_to random_coordinates_path(my: "bookmarks"), class: "btn btn-info btn-lg" do %>
-      マイブックマーク<br>ランダム
+    <% if current_user.bookmarks.present? %>
+      <%= link_to random_coordinates_path(my: "bookmarks"), class: "btn btn-info btn-lg" do %>
+        マイブックマーク<br>ランダム
+      <% end %>
     <% end %>
   <% end %>
 </div>
