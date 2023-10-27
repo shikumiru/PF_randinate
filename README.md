@@ -1,4 +1,4 @@
-# RAMDINATE
+# RANDINATE
 ​
 ## サイト概要
 ### サイトテーマ
@@ -22,11 +22,11 @@
 - 考える時間は無いけど、服装は整えときたい時
 ​
 ## 設計書
-- 画面遷移図<br><img src="/app/assets/images/RANDINATE UIFlows.drawio.png">
-- <a href="https://drive.google.com/file/d/1AdDFlNVCnxZz2alWhYCqEbTquaXF8aT7/view?usp=drive_link">ワイヤーフレーム</a>
-- ER図<br><img src="/app/assets/images/RANDINATE ER図.drawio.png">
-- <a href="https://docs.google.com/spreadsheets/d/1Q4_X8HRF_ZdXEdjpu9T2YCUPxqIVMrp0/edit?usp=sharing&ouid=106222049630350906641&rtpof=true&sd=true">テーブル定義書</a>
-- <a href="https://docs.google.com/spreadsheets/d/1a7TyC-jQDM0YmzrdpArlPnilztogUgQIDrPlmHprJKY/edit?usp=sharing">アプリケーション詳細設計書</a>
+- 画面遷移図<br>![画面遷移図](app/assets/images/RANDINATE UIFlows.drawio.png "画面遷移図")
+- [ワイヤーフレーム](https://drive.google.com/file/d/1AdDFlNVCnxZz2alWhYCqEbTquaXF8aT7/view?usp=drive_link)
+- ER図<br>![ER図](app/assets/images/RANDINATE ER図.drawio.png "ER図")
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1Q4_X8HRF_ZdXEdjpu9T2YCUPxqIVMrp0/edit?usp=sharing&ouid=106222049630350906641&rtpof=true&sd=true)
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1a7TyC-jQDM0YmzrdpArlPnilztogUgQIDrPlmHprJKY/edit?usp=sharing)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -34,4 +34,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-​
