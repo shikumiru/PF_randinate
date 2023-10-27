@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    root to: "public/homes#top"
+    root to: "homes#top"
     resources :users, only: [:show, :edit, :update] do
       member do
         patch :deactivate
