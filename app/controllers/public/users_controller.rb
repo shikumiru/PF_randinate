@@ -5,8 +5,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(3)
-    @bookmarks = @user.bookmarks.order(created_at: :desc).page(params[:page]).per(3)
+    @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(2)
+    @bookmarks = @user.bookmarks.order(created_at: :desc).page(params[:page]).per(2)
   end
 
   def edit

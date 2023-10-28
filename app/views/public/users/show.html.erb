@@ -1,14 +1,14 @@
 <div class="container">
-  <div class="row">
-    <div class="col-3 my-3">
-      <h1 class="bg-light d-inline-block px-3">会員情報</h1>
-    </div>
+  <div class="row m-3 d-flex">
+    <h3 class="bg-light px-3 mr-auto">会員情報</h3>
     <% if @user == current_user && !@user.guest_user? %>
-      <div class="col-3 my-3">
+      <div>
         <%= link_to "会員情報を編集", edit_user_path(@user), class: "btn btn-success btn-lg" %>
       </div>
     <% end %>
-    <div class="col-md-9 offset-md-1 my-3">
+  </div>
+  <div class-"row">
+    <div class="col-md-10 offset-md-1 my-3">
       <table class="table table-borderd">
         <tbody>
           <tr>
@@ -26,21 +26,23 @@
         </tbody>
       </table>
     </div>
-    <div class="col-6 my-3">
-      <div class="d-flex justify-content-between">
-        <h3 class="bg-light px-3">投稿一覧</h3>
-        <div class="d-flex align-items-center">
-          <%= link_to "全ての投稿を見る>", posts_user_path(@user) %>
+  </div>
+  <div class="row">
+    <div class="col-12 col-xl-6 my-3">
+      <div class="row d-flex">
+        <h5 class="bg-light px-3 mr-auto">コーディネート一覧</h5>
+        <div class="d-flex align-items-center px-3">
+          <%= link_to "全てのコーディネートを見る>", posts_user_path(@user) %>
         </div>
       </div>
       <% unless current_user.coordinates.present? %>
         <h3 class="m-3">投稿はありません</h3>
       <% else %>
-        <div class="row mt-3">
+        <div class="row">
           <% @coordinates.each do |coordinate| %>
-            <div class="col-4">
+            <div class="col-12 col-md-5 m-3">
               <%= link_to coordinate_path(coordinate) do %>
-                <%= image_tag coordinate.get_coordinate_image(170,230) %><br>
+                <%= image_tag coordinate.get_coordinate_image(nil,280) %><br>
               <% end %>
               <% coordinate.tag_list.first(2).each do |tag| %>
                 <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
@@ -50,21 +52,21 @@
         </div>
       <% end %>
     </div>
-    <div class="col-6 my-3">
-      <div class="d-flex justify-content-between">
-        <h3 class="bg-light d-inline-block px-3">ブックマーク一覧</h3>
-        <div class="d-flex align-items-center">
+    <div class="col-12 col-xl-6 my-3">
+      <div class="row d-flex">
+        <h5 class="bg-light px-3 mr-auto">マイブックマーク一覧</h5>
+        <div class="d-flex align-items-center px-3">
           <%= link_to "全てのブックマークを見る>", bookmarks_user_path(@user) %>
         </div>
       </div>
       <% unless current_user.bookmarks.present? %>
         <h3 class="m-3">ブックマークはありません</h3>
       <% else %>
-        <div class="row mt-3">
+        <div class="row">
           <% @bookmarks.each do |bookmark| %>
-            <div class="col-4">
+            <div class="col-12 col-md-5 m-3">
               <%= link_to coordinate_path(bookmark.coordinate) do %>
-                <%= image_tag bookmark.coordinate.get_coordinate_image(170,230) %><br>
+                <%= image_tag bookmark.coordinate.get_coordinate_image(nil,280) %><br>
               <% end %>
               <%= link_to bookmark.coordinate.user.name, coordinates_path(user_id: bookmark.coordinate.user.id) %><br>
               <% bookmark.coordinate.tag_list.first(2).each do |tag| %>

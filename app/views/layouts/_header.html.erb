@@ -6,39 +6,42 @@
           <%= image_tag "logo.png", height: 50 %>
         <% end %>
       </div>
-      <div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if admin_signed_in? %>
-            <li class="mr-3">
+            <li class="mx-3">
               <%= link_to "投稿一覧", admin_coordinates_path, class: "nav-link text-light btn btn-secondary" %>
             </li>
-            <li class="mr-3">
+            <li class="mx-3">
               <%= link_to "会員一覧", admin_users_path, class: "nav-link text-light btn btn-secondary" %>
             </li>
-            <li>
+            <li class="mx-3">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-light btn btn-secondary" %>
             </li>
           <% elsif user_signed_in? %>
-            <li class="mr-3">
+            <li class="mx-3">
               <%= link_to "コーディネート一覧", coordinates_path, class: "nav-link text-light btn btn-secondary" %>
             </li>
-            <li class="mr-3">
+            <li class="mx-3">
               <%= link_to "マイページ", user_path(current_user), class: "nav-link text-light btn btn-secondary" %>
             </li>
-            <li>
+            <li class="mx-3">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-light btn btn-secondary" %>
             </li>
           <% else %>
-            <li class="mr-3">
+            <li class="mx-3">
               <%= link_to "ゲストログイン（閲覧用）", public_guest_sign_in_path, class: "nav-link text-light btn btn-secondary", method: :post %>
             </li>
-            <li class="mr-3">
+            <li class="mx-3">
               <%= link_to "コーディネート一覧", coordinates_path, class: "nav-link text-light btn btn-secondary" %>
             </li>
-            <li class="mr-3">
+            <li class="mx-3">
               <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light btn btn-secondary" %>
             </li>
-            <li>
+            <li class="mx-3">
               <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light btn btn-secondary" %>
             </li>
           <% end %>

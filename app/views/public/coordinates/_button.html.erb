@@ -1,5 +1,7 @@
-<div class="col-3 d-flex flex-column mt-5">
-  <%= link_to "コーディネート投稿", new_coordinate_path, class: "btn btn-success btn-lg mb-3" %>
+<div class="d-flex flex-column col-11 col-lg-3 mx-3">
+  <%= link_to new_coordinate_path, class: "btn btn-success btn-lg mb-3" do %>
+    コーディネート<br>投稿
+  <% end %>
   <% Coordinate.styles_i18n.values.each do |style| %>
     <%= link_to random_coordinates_path(style: style), class: "btn btn-primary btn-lg mb-3" do %>
       <%= style %><br>ランダム

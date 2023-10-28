@@ -2,9 +2,9 @@ class Admin::CoordinatesController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(8)
+      @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(6)
     else
-      @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(8)
+      @coordinates = Coordinate.order(created_at: :desc).page(params[:page]).per(6)
     end
   end
 
