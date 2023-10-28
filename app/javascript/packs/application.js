@@ -9,11 +9,10 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 import "jquery";
-import "preview.js";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
-import 'bootstrap-tagsinput';
+import "../packs/preview.js";
 
 Rails.start()
 Turbolinks.start()
