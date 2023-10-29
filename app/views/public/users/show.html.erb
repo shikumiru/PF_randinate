@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row m-3 d-flex">
-    <h3 class="bg-light px-3 mr-auto">会員情報</h3>
+  <div class="row m-3">
+    <h3 class="bg-light px-3">会員情報</h3>
     <% if @user == current_user && !@user.guest_user? %>
-      <div>
-        <%= link_to "会員情報を編集", edit_user_path(@user), class: "btn btn-success btn-lg" %>
+      <div class="ml-3">
+        <%= link_to "会員情報を編集", edit_user_path(@user), class: "btn btn-success" %>
       </div>
     <% end %>
   </div>
@@ -40,7 +40,7 @@
       <% else %>
         <div class="row">
           <% @coordinates.each do |coordinate| %>
-            <div class="col-12 col-md-5 m-3">
+            <div class="col-12 col-md-5 my-3">
               <%= link_to coordinate_path(coordinate) do %>
                 <%= image_tag coordinate.get_coordinate_image(nil,280) %><br>
               <% end %>
@@ -64,7 +64,7 @@
       <% else %>
         <div class="row">
           <% @bookmarks.each do |bookmark| %>
-            <div class="col-12 col-md-5 m-3">
+            <div class="col-12 col-md-5 my-3">
               <%= link_to coordinate_path(bookmark.coordinate) do %>
                 <%= image_tag bookmark.coordinate.get_coordinate_image(nil,280) %><br>
               <% end %>

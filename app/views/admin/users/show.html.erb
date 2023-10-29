@@ -1,57 +1,59 @@
 <div class="container">
-  <div class="row">
-    <div class="col-3 my-3">
-      <h2 class="bg-light d-inline-block px-3 my-3">会員情報詳細</h2>
-    </div>
+  <div class="row m-3">
+    <h3 class="bg-light px-3">会員情報詳細</h3>
   </div>
   <%= form_with model: @user, url: admin_user_path do |f| %>
-  <div class="col-md-9 offset-md-1 my-3">
-    <table class="table table-borderd">
-      <tbody>
-        <tr>
-          <th scope="col" class="w-25">ニックネーム</th>
-          <td class="text-center"><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>性別</th>
-          <td class="text-center"><%= @user.gender_i18n %></td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td class="text-center"><%= @user.email %></td>
-        </tr>
-        <tr>
-          <th>会員ステータス</th>
-          <td class="text-center">
-            <%= f.radio_button :is_deleted, "false" %>
-            <%= f.label :is_deleted_false, "有効", class:"mr-5" %>
-            <%= f.radio_button :is_deleted, "true" %>
-            <%= f.label :is_deleted_true, "退会" %>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td class="d-flex justify-content-center"><%= f.submit "変更を保存", class: "btn btn-success btn-lg px-5 py-3" %></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-md-10 offset-md-1 my-3">
+      <table class="table table-borderd">
+        <tbody>
+          <tr>
+            <th scope="col" class="w-25">ニックネーム</th>
+            <td class="text-center"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td class="text-center"><%= @user.gender_i18n %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td class="text-center"><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th>会員ステータス</th>
+            <td class="text-center">
+              <%= f.radio_button :is_deleted, "false" %>
+              <%= f.label :is_deleted_false, "有効", class:"mr-5" %>
+              <%= f.radio_button :is_deleted, "true" %>
+              <%= f.label :is_deleted_true, "退会" %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="d-flex justify-content-center"><%= f.submit "変更を保存", class: "btn btn-success btn-lg px-5 py-3" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <% end %>
-  <div class="col-12">
-    <div class="d-flex justify-content-between my-3">
-      <h3 class="bg-light px-3">投稿一覧</h3>
-      <div class="d-flex align-items-center">
-        <%= link_to "全ての投稿を見る>", admin_coordinates_path(user_id: @user.id) %>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <% @coordinates.limit(6).each do |coordinate| %>
-        <div class="col-2">
-          <%= link_to admin_coordinate_path(coordinate) do %>
-            <%= image_tag coordinate.get_coordinate_image(170,230) %>
-          <% end %>
+  <div class="row">
+    <div class="col-12 my-3">
+      <div class="row d-flex">
+        <h5 class="bg-light px-3 mr-auto">投稿一覧</h5>
+        <div class="d-flex align-items-center px-3">
+          <%= link_to "全ての投稿を見る>", admin_coordinates_path(user_id: @user.id) %>
         </div>
-      <% end %>
+      </div>
+      <div class="row">
+        <% @coordinates.limit(6).each do |coordinate| %>
+          <div class="col-6 col-md-2 my-3">
+            <%= link_to admin_coordinate_path(coordinate) do %>
+              <%= image_tag coordinate.get_coordinate_image(120,160) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

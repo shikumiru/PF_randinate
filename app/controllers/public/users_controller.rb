@@ -41,7 +41,7 @@ class Public::UsersController < ApplicationController
   def bookmarks
     bookmarks = Bookmark.where(user_id: current_user.id).pluck(:coordinate_id)
     @bookmark_coordinates = Coordinate.find(bookmarks)
-    @bookmark_coordinates = Kaminari.paginate_array(@bookmark_coordinates.reverse).page(params[:page]).per(10)
+    @bookmark_coordinates = Kaminari.paginate_array(@bookmark_coordinates.reverse).page(params[:page]).per(6)
   end
 
   private

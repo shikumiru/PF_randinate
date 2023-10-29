@@ -26,14 +26,14 @@
   <% end %>
   <div class="row">
     <% coordinates.each do |coordinate| %>
-      <div class="col-12 col-lg-3 m-3">
+      <div class="col-12 col-lg-3 my-3">
         <div class="row">
-          <% if admin_signed_in? %>
-            <%= link_to admin_coordinate_path(coordinate) do %>
-              <%= image_tag coordinate.get_coordinate_image(150,200) %>
-            <% end %>
-          <% else %>
-            <div class="col-6 col-lg-12">
+          <div class="col-7 col-lg-12">
+            <% if admin_signed_in? %>
+              <%= link_to admin_coordinate_path(coordinate) do %>
+                <%= image_tag coordinate.get_coordinate_image(150,200) %>
+              <% end %>
+            <% else %>
               <div class="d-flex flex-row justify-content-center">
                 <%= link_to coordinate_path(coordinate) do %>
                   <%= image_tag coordinate.get_coordinate_image(150,200) %>
@@ -42,19 +42,19 @@
                   <%= render "public/bookmarks/btn", coordinate: coordinate %>
                 </div>
               </div>
-            </div>
-          <% end %>
-          <% if admin_signed_in? %>
-            <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %>
-          <% else %>
-            <div class="col-4 offset-1 col-lg-12">
+            <% end %>
+          </div>
+          <div class="col-4 offset-1 col-lg-12">
+            <% if admin_signed_in? %>
+              <%= link_to coordinate.user.name, admin_user_path(coordinate.user) %><br>
+            <% else %>
               <%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %><br>
-              <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %><br>
-              <% coordinate.tag_list.first(2).each do |tag| %>
-                <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
-              <% end %>
-            </div>
-          <% end %>
+            <% end %>
+            <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %><br>
+            <% coordinate.tag_list.first(2).each do |tag| %>
+              <span class="badge badge-secondary"><%= link_to tag, coordinates_path(tag_name: tag), class: "text-white" %></span><br>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>

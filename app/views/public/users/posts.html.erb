@@ -1,11 +1,9 @@
-<div class="container my-5">
+<div class="container">
   <div class="row">
     <div class="col">
       <div class="row m-3 d-flex justify-content-between">
-        <h2 class="bg-light p-2 mr-auto">投稿一覧</h2>
-        <%= link_to random_coordinates_path(my: "posts"), class: "btn btn-info" do %>
-          マイコーディネート<br>ランダム
-        <% end %>
+        <h3 class="bg-light px-3 mr-auto">投稿一覧</h3>
+        <%= link_to "マイコーディネートランダム", random_coordinates_path(my: "posts"), class: "btn btn-info" %>
         <div class="tabs align-items-center ml-3">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -27,9 +25,9 @@
           <div id="all" class="tab-pane fade show active">
             <div class="row">
               <% @coordinates.each do |coordinate| %>
-                <div class="col-2 m-3">
+                <div class="col-4 col-md-2 m-3">
                   <%= link_to coordinate_path(coordinate) do %>
-                    <%= image_tag coordinate.get_coordinate_image(150,200) %>
+                    <%= image_tag coordinate.get_coordinate_image(120,160) %>
                   <% end %>
                 </div>
               <% end %>
@@ -41,9 +39,9 @@
           <div id="published" class="tab-pane fade">
             <div class="row">
               <% @published_coordinates.each do |coordinate| %>
-                <div class="col-2 m-3">
+                <div class="col-4 col-md-2 m-3">
                   <%= link_to coordinate_path(coordinate) do %>
-                    <%= image_tag coordinate.get_coordinate_image(150,200) %>
+                    <%= image_tag coordinate.get_coordinate_image(120,160) %>
                   <% end %>
                 </div>
               <% end %>
@@ -55,9 +53,9 @@
           <div id="draft" class="tab-pane fade">
             <div class="row">
               <% @draft_coordinates.each do |coordinate| %>
-                <div class="col-2 m-3">
+                <div class="col-4 col-md-2 m-3">
                   <%= link_to coordinate_path(coordinate) do %>
-                    <%= image_tag coordinate.get_coordinate_image(150,200) %>
+                    <%= image_tag coordinate.get_coordinate_image(120,160) %>
                   <% end %>
                 </div>
               <% end %>

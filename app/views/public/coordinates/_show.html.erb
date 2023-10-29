@@ -20,9 +20,9 @@
   <% end %>
   <div class="row m-3">
     <div class="col-12 col-md-6 d-flex justify-content-center">
-      <%= image_tag coordinate.get_coordinate_image(nil,480) %>
+      <%= image_tag coordinate.get_coordinate_image(nil,400) %>
     </div>
-    <div class="col-11 col-md-5 offset-1">
+    <div class="col-12 col-md-5 offset-md-1">
       <div class="row mt-3">
         <div class="col-md-5 text-center border border-dark rounded">ニックネーム</div>
         <div class="col-md-7 text-center"><%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %></div>
