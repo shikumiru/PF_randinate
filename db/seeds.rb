@@ -106,7 +106,31 @@ Coordinate.find_or_create_by!(introduction: "青のジャージです") do |coor
   coordinate.tag_list.add("ジャージ")
 end
 
-# ブックマーク機能の追加
+Coordinate.find_or_create_by!(introduction: "青シャツ") do |coordinate|
+  coordinate.coordinate_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-ao.jpg"), filename: 'sample-ao.jpg')
+  coordinate.user_id = 3
+  coordinate.style = "ladies"
+  coordinate.is_published = true
+  coordinate.tag_list.add("シャツ","ネクタイ")
+end
+
+Coordinate.find_or_create_by!(introduction: "甚兵衛") do |coordinate|
+  coordinate.coordinate_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-jinbei.jpg"), filename: 'sample-jinbei.jpg')
+  coordinate.user_id = 3
+  coordinate.style = "ladies"
+  coordinate.is_published = true
+  coordinate.tag_list.add("甚兵衛")
+end
+
+Coordinate.find_or_create_by!(introduction: "モノクロコーデ") do |coordinate|
+  coordinate.coordinate_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-jacket.jpg"), filename: 'sample-jacket.jpg')
+  coordinate.user_id = 3
+  coordinate.style = "ladies"
+  coordinate.is_published = true
+  coordinate.tag_list.add("ジャケット","シャツ","モノクロ")
+end
+
+# ブックマークの追加
 
 users = User.all
 coordinates = Coordinate.all
