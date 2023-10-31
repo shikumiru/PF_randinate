@@ -5,8 +5,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(3)
-    @bookmarks = @user.bookmarks.order(created_at: :desc).page(params[:page]).per(3)
+    @coordinates = @user.coordinates.order(created_at: :desc).page(params[:page]).per(2)
+    @bookmarks = @user.bookmarks.order(created_at: :desc).page(params[:page]).per(2)
   end
 
   def edit
@@ -41,7 +41,7 @@ class Public::UsersController < ApplicationController
   def bookmarks
     bookmarks = Bookmark.where(user_id: current_user.id).pluck(:coordinate_id)
     @bookmark_coordinates = Coordinate.find(bookmarks)
-    @bookmark_coordinates = Kaminari.paginate_array(@bookmark_coordinates.reverse).page(params[:page]).per(10)
+    @bookmark_coordinates = Kaminari.paginate_array(@bookmark_coordinates.reverse).page(params[:page]).per(6)
   end
 
   private
