@@ -16,9 +16,9 @@
       </div>
       <div class="row">
         <% @coordinates.each do |coordinate| %>
-          <div class="col-4 col-lg-2 m-4">
+          <div class="col-6 col-md-4 col-xl-2 my-3">
             <%= link_to coordinate_path(coordinate) do %>
-              <%= image_tag coordinate.get_coordinate_image(150,200) %><br>
+              <%= image_tag coordinate.get_coordinate_image(120,160) %><br>
             <% end %>
             <%= link_to coordinate.user.name, coordinates_path(user_id: coordinate.user.id) %><br>
             <%= link_to coordinate.style_i18n, coordinates_path(style: coordinate.style) %><br>
@@ -28,7 +28,7 @@
           </div>
         <% end %>
       </div>
-      <div class="text-right">
+      <div class="text-right m-3">
         <%= link_to "全ての投稿を見る>", coordinates_path %>
       </div>
     </div>
