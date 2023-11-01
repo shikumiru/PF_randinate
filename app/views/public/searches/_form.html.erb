@@ -1,0 +1,6 @@
+<div class="form-group">
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :tag_name, placeholder: "タグ名で検索", class: "form-control form-control-lg" %>
+    <%= f.submit "検索", class: "form-control" %>
+  <% end %>
+</div>

@@ -42,6 +42,11 @@ class Public::CoordinatesController < ApplicationController
   def show
     @coordinate = Coordinate.find(params[:id])
     @tags = @coordinate.tag_counts_on(:tags)
+    if params[:vissually].present?
+      @coordinate.coordinate_image.blob.open do |file|
+        @images = Vision.get_image_data(file)
+      end
+    end
   end
 
   def edit

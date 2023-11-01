@@ -1,17 +1,29 @@
 <div class="col">
-  <div class="row mt-3">
+  <div class="row mb-3">
     <% if admin_signed_in? %>
       <h3 class="font-weight-bold bg-light px-3 mr-3">投稿詳細</h3>
       <%= link_to "投稿を削除", admin_coordinate_path(@coordinate), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-lg" %>
     <% else %>
-      <div class="d-flex flex-row">
+      <div class="d-flex">
         <h3 class="font-weight-bold bg-light px-3 mr-3">コーディネート詳細</h3>
         <div id="bookmark_btn_<%= coordinate.id %>">
           <%= render "public/bookmarks/btn", coordinate: coordinate %>
         </div>
+        <%= link_to "類似画像検索", coordinate_path(vissually: true), class: "btn btn-warning mx-3" %>
       </div>
     <% end %>
   </div>
+
+  <% if @images.present? %>
+  <div class="row">
+          <% @images.each do |image| %>
+            <div class="col-2">
+              <img src="<%=image%>" style="width: 150px;"/>
+            </div>
+          <% end %>
+        </div>
+  <% end %>
+
   <% if coordinate.user == current_user %>
     <div class="row d-flex justify-content-end">
       <%= link_to "コーディネート編集", edit_coordinate_path(coordinate), class: "btn btn-success mr-3" %>
