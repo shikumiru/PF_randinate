@@ -19,7 +19,7 @@ module Vision
           },
           features: [
             {
-              maxResults: 5,
+              maxResults: 3,
               type: 'WEB_DETECTION'
             }
           ]

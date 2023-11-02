@@ -42,9 +42,9 @@ class Public::CoordinatesController < ApplicationController
   def show
     @coordinate = Coordinate.find(params[:id])
     @tags = @coordinate.tag_counts_on(:tags)
-    if params[:vissually].present?
+    if params[:similar].present?
       @coordinate.coordinate_image.blob.open do |file|
-        @images = Vision.get_image_data(file)
+        @similar = Vision.get_image_data(file)
       end
     end
   end
@@ -74,6 +74,7 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def random
+    @random = Coordinate.find(1)
     if params[:style] == "メンズ"
       @random = Coordinate.find(Coordinate.mens.published.pluck(:id).shuffle[0])
     elsif params[:style] == "レディース"
