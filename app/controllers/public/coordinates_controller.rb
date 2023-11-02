@@ -42,11 +42,12 @@ class Public::CoordinatesController < ApplicationController
   def show
     @coordinate = Coordinate.find(params[:id])
     @tags = @coordinate.tag_counts_on(:tags)
-    if params[:similar].present?
-      @coordinate.coordinate_image.blob.open do |file|
-        @similar = Vision.get_image_data(file)
-      end
-    end
+    # VisionAPIでの類似画像検索
+    # if params[:similar].present?
+    #   @coordinate.coordinate_image.blob.open do |file|
+    #     @similar = Vision.get_image_data(file)
+    #   end
+    # end
   end
 
   def edit
@@ -89,6 +90,15 @@ class Public::CoordinatesController < ApplicationController
       @random = Coordinate.find(bookmarks.shuffle[0])
     end
     @tags = @random.tag_counts_on(:tags)
+  end
+
+  def similar
+    if params[:coordinate_id].present?
+      @coordinate = Coordinate.find(params[:coordinate_id])
+      @coordinate.coordinate_image.blob.open do |file|
+        @similar = Vision.get_image_data(file)
+      end
+    end
   end
 
   private

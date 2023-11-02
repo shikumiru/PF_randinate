@@ -9,22 +9,12 @@
         <div id="bookmark_btn_<%= coordinate.id %>">
           <%= render "public/bookmarks/btn", coordinate: coordinate %>
         </div>
-        <%= link_to "類似画像を検索", coordinate_path(coordinate, similar: true), class: "btn btn-warning mx-3", id: "visionapi" %>
+        <%= link_to "類似画像を検索", similar_coordinates_path(coordinate_id: coordinate.id), class: "btn btn-warning mx-3", id: "vision-api" %>
       </div>
     <% end %>
   </div>
 
-  <div id="similar">
-    <% if similar.present? %>
-      <div class="row mb-3">
-        <% similar.each do |image| %>
-          <div class="col-4 d-flex justify-content-center">
-            <img src="<%= image %>" style="width: 240px;"/>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <div id="similar"></div>
 
   <% if coordinate.user == current_user %>
     <div class="row d-flex justify-content-end">

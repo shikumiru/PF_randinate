@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resource :bookmarks, only: [:create, :destroy]
       collection do
         get :random
+        get :similar
       end
     end
     get "/search", to: "searches#search"
