@@ -90,30 +90,6 @@ Coordinate.find_or_create_by!(introduction: "スーツ") do |coordinate|
   coordinate.tag_list.add("スーツ")
 end
 
-Coordinate.find_or_create_by!(introduction: "イーブイのパジャマです") do |coordinate|
-  coordinate.coordinate_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-ev.jpg"), filename: 'sample-ev.jpg')
-  coordinate.user_id = 4
-  coordinate.style = "unisex"
-  coordinate.is_published = true
-  coordinate.tag_list.add("イーブイ","パジャマ")
-end
-
-Coordinate.find_or_create_by!(introduction: "青のジャージです") do |coordinate|
-  coordinate.coordinate_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-dumbo.jpg"), filename: 'sample-dumbo.jpg')
-  coordinate.user_id = 5
-  coordinate.style = "unisex"
-  coordinate.is_published = true
-  coordinate.tag_list.add("ジャージ")
-end
-
-Coordinate.find_or_create_by!(introduction: "青シャツ") do |coordinate|
-  coordinate.coordinate_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-ao.jpg"), filename: 'sample-ao.jpg')
-  coordinate.user_id = 3
-  coordinate.style = "ladies"
-  coordinate.is_published = true
-  coordinate.tag_list.add("シャツ","ネクタイ")
-end
-
 Coordinate.find_or_create_by!(introduction: "甚兵衛") do |coordinate|
   coordinate.coordinate_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-jinbei.jpg"), filename: 'sample-jinbei.jpg')
   coordinate.user_id = 3
