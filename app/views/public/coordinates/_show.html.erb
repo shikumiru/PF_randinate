@@ -13,7 +13,6 @@
       </div>
     <% end %>
   </div>
-
   <!-- 類似画像検索の結果表示 -->
   <div id="similar">
     <% if similar.present? %>
@@ -27,7 +26,6 @@
     <% end %>
   </div>
   <!---->
-
   <% if coordinate.user == current_user %>
     <div class="row d-flex justify-content-end">
       <%= link_to "コーディネート編集", edit_coordinate_path(coordinate), class: "btn btn-success mr-3" %>
@@ -70,5 +68,26 @@
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="row mt-3">
+    <% coordinate.actions.each do |action| %>
+      <% unless user_signed_in? %>
+        <% action %>
+        <i class="text-warning fa-regular <%= action.stamp %>"></i>
+      <% else %>
+        <% if action.user == current_user %>
+          <% action %>
+          <%= link_to coordinate_action_path(coordinate), method: :delete, class: "btn" do %>
+            <i class="text-success fa-regular fa-2xl <%= action.stamp %>"></i>
+          <% end %>
+        <% else %>
+          <% action %>
+          <i class="text-warning fa-regular fa-2xl <%= action.stamp %>"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row mt-3">
+    <%= render 'public/actions/action', coordinate: coordinate %>
   </div>
 </div>

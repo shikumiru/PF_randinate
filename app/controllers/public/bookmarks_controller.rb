@@ -1,4 +1,6 @@
 class Public::BookmarksController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @coordinate = Coordinate.find(params[:coordinate_id])
     bookmark = current_user.bookmarks.new(coordinate_id: @coordinate.id)
