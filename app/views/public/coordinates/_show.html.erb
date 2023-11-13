@@ -73,16 +73,16 @@
     <% coordinate.actions.each do |action| %>
       <% unless user_signed_in? %>
         <% action %>
-        <i class="text-warning fa-regular <%= action.stamp %>"></i>
+        <i class="m-3 text-warning fa-solid fa-2xl <%= action.stamp %>"></i>
       <% else %>
         <% if action.user == current_user %>
           <% action %>
           <%= link_to coordinate_action_path(coordinate), method: :delete, class: "btn" do %>
-            <i class="text-success fa-regular fa-2xl <%= action.stamp %>"></i>
+            <i class="text-warning fa-solid fa-2xl <%= action.stamp %>"></i>
           <% end %>
         <% else %>
           <% action %>
-          <i class="text-warning fa-regular fa-2xl <%= action.stamp %>"></i>
+          <i class="fa-solid fa-2xl <%= action.stamp %>"></i>
         <% end %>
       <% end %>
     <% end %>

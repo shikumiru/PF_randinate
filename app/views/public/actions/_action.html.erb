@@ -1,19 +1,25 @@
 <% if user_signed_in? %>
   <%= form_with url: coordinate_actions_path(coordinate), method: :post do |f| %>
     <%= button_tag type: "submit", name: "stamp", value: "fa-heart", class: "btn" do %>
-      <i class="fa-regular fa-xl fa-heart"></i>
+      <i class="fa-solid fa-xl fa-heart"></i>
     <% end %>
     <%= button_tag type: "submit", name: "stamp", value: "fa-face-star", class: "btn" do %>
-      <i class="fa-regular fa-xl fa-star"></i>
+      <i class="fa-solid fa-xl fa-star"></i>
     <% end %>
     <%= button_tag type: "submit", name: "stamp", value: "fa-thumbs-up", class: "btn" do %>
-      <i class="fa-regular fa-xl fa-thumbs-up"></i>
+      <i class="fa-solid fa-xl fa-thumbs-up"></i>
     <% end %>
     <%= button_tag type: "submit", name: "stamp", value: "fa-eye", class: "btn" do %>
-      <i class="fa-regular fa-xl fa-eye"></i>
+      <i class="fa-solid fa-xl fa-eye"></i>
     <% end %>
-    <%= button_tag type: "submit", name: "stamp", value: "fa-hand-peace", class: "btn" do %>
-      <i class="fa-regular fa-xl fa-hand-peace"></i>
+    <%= button_tag type: "submit", name: "stamp", value: "fa-crown", class: "btn" do %>
+      <i class="fa-solid fa-xl fa-crown"></i>
+    <% end %>
+    <%= button_tag type: "submit", name: "stamp", value: "fa-check", class: "btn" do %>
+      <i class="fa-solid fa-xl fa-check"></i>
+    <% end %>
+    <%= button_tag type: "submit", name: "stamp", value: "fa-lightbulb", class: "btn" do %>
+      <i class="fa-solid fa-xl fa-lightbulb"></i>
     <% end %>
   <% end %>
 <% end %>
