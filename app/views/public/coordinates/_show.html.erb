@@ -70,19 +70,19 @@
     </div>
   </div>
   <div class="row mt-3">
-    <% coordinate.actions.each do |action| %>
+    <% @stamps.group(:stamp).count.each do |stamp,count| %>
       <% unless user_signed_in? %>
-        <% action %>
-        <i class="m-3 text-warning fa-solid fa-2xl <%= action.stamp %>"></i>
+        <i class="m-3 text-warning fa-solid fa-2xl <%= stamp %>"></i>
+        <span><%= count %></span>
       <% else %>
-        <% if action.user == current_user %>
-          <% action %>
+        <% if current_user.actions.exists?(stamp: stamp) %>
           <%= link_to coordinate_action_path(coordinate), method: :delete, class: "btn" do %>
-            <i class="text-warning fa-solid fa-2xl <%= action.stamp %>"></i>
+            <i class="text-warning fa-solid fa-2xl <%= stamp %>"></i>
+            <span><%= count %></span>
           <% end %>
         <% else %>
-          <% action %>
-          <i class="fa-solid fa-2xl <%= action.stamp %>"></i>
+          <i class="my-3 text-warning fa-solid fa-2xl <%= stamp %>"></i>
+          <span><%= count %></span>
         <% end %>
       <% end %>
     <% end %>

@@ -47,6 +47,7 @@ class Public::CoordinatesController < ApplicationController
         @similar = Vision.get_image_data(file)
       end
     end
+    @stamps = @coordinate.actions.joins(:user)
   end
 
   def edit

@@ -1,9 +1,10 @@
 <% if user_signed_in? %>
+  <div class="col-12">リアクションをつける</div>
   <%= form_with url: coordinate_actions_path(coordinate), method: :post do |f| %>
     <%= button_tag type: "submit", name: "stamp", value: "fa-heart", class: "btn" do %>
       <i class="fa-solid fa-xl fa-heart"></i>
     <% end %>
-    <%= button_tag type: "submit", name: "stamp", value: "fa-face-star", class: "btn" do %>
+    <%= button_tag type: "submit", name: "stamp", value: "fa-star", class: "btn" do %>
       <i class="fa-solid fa-xl fa-star"></i>
     <% end %>
     <%= button_tag type: "submit", name: "stamp", value: "fa-thumbs-up", class: "btn" do %>
