@@ -26,6 +26,7 @@ class Public::UsersController < ApplicationController
   def deactivate
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
+    @user.coordinates.update(is_published: false)
     reset_session
     flash[:notice] = "退会処理を完了しました。ご利用ありがとうございました。"
     redirect_to root_path

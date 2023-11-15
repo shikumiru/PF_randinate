@@ -1,0 +1,23 @@
+<div class="row mt-3">
+  <div class="col-12">みんなのリアクション</div>
+  <% actions.group(:stamp).count.each do |stamp,count| %>
+    <% unless user_signed_in? %>
+      <div class="btn">
+        <i class="m-3 fa-solid fa-2xl <%= stamp %>"></i>
+        <span><%= count %></span>
+      </div>
+    <% else %>
+      <% if current_user.actions.exists?(stamp: stamp) %>
+        <%= link_to coordinate_action_path(coordinate, stamp, stamp: stamp), method: :delete, class: "btn" do %>
+          <i class="fa-solid fa-2xl <%= stamp %>"></i>
+          <span class="text-secondary"><%= count %></span>
+        <% end %>
+      <% else %>
+        <div class="btn">
+          <i class="fa-solid fa-2xl <%= stamp %>"></i>
+          <span class="text-secondary"><%= count %></span>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

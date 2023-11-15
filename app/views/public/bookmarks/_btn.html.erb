@@ -1,15 +1,15 @@
 <% unless user_signed_in? %>
-  <i class="fa-solid fa-heart fa-2xl" style="color:red;"></i>
-    <span style="color:red;"><%= coordinate.bookmarks.count %></span>
+  <i class="fa-solid fa-bookmark fa-2xl" style="color:green;"></i>
+  <span style="color:green;"><%= coordinate.bookmarks.count %></span>
 <% else %>
   <% if coordinate.bookmarked_by?(current_user) %>
     <%= link_to coordinate_bookmarks_path(coordinate), method: :delete, remote: true do %>
-      <i class="fa-solid fa-heart fa-2xl" style="color:red;"></i>
+      <i class="fa-solid fa-bookmark fa-2xl text-success"></i>
       <span class="h4"><%= coordinate.bookmarks.count %></span>
     <% end %>
   <% else %>
     <%= link_to coordinate_bookmarks_path(coordinate), method: :post, remote: true do %>
-      <i class="fa-regular fa-heart fa-2xl"></i>
+      <i class="fa-regular fa-bookmark fa-2xl"></i>
       <span class="h4"><%= coordinate.bookmarks.count %></span>
     <% end %>
   <% end %>

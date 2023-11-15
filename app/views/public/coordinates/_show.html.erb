@@ -13,7 +13,7 @@
       </div>
     <% end %>
   </div>
-
+  <!-- 類似画像検索の結果表示 -->
   <div id="similar">
     <% if similar.present? %>
       <div class="row mb-3">
@@ -25,7 +25,7 @@
       </div>
     <% end %>
   </div>
-
+  <!---->
   <% if coordinate.user == current_user %>
     <div class="row d-flex justify-content-end">
       <%= link_to "コーディネート編集", edit_coordinate_path(coordinate), class: "btn btn-success mr-3" %>
@@ -68,5 +68,11 @@
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="row mt-3">
+    <%= render 'public/actions/stamp', coordinate: coordinate, actions: actions %>
+  </div>
+  <div class="row mt-3">
+    <%= render 'public/actions/btn', coordinate: coordinate %>
   </div>
 </div>

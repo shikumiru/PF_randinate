@@ -11,6 +11,7 @@ class Admin::CoordinatesController < ApplicationController
   def show
     @coordinate = Coordinate.find(params[:id])
     @tags = @coordinate.tag_counts_on(:tags)
+    @actions = @coordinate.actions.joins(:user)
   end
 
   def destroy

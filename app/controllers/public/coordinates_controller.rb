@@ -47,6 +47,7 @@ class Public::CoordinatesController < ApplicationController
         @similar = Vision.get_image_data(file)
       end
     end
+    @actions = @coordinate.actions.joins(:user)
   end
 
   def edit
@@ -89,6 +90,7 @@ class Public::CoordinatesController < ApplicationController
       @random = Coordinate.find(bookmarks.shuffle[0])
     end
     @tags = @random.tag_counts_on(:tags)
+    @actions = @random.actions.joins(:user)
   end
 
   private

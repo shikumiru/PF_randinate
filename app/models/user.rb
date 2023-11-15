@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :coordinates, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :actions, dependent: :destroy
 
   validates :name, presence: true, length: { in: 2..10 }
   validates :gender, presence: true
@@ -22,7 +23,7 @@ class User < ApplicationRecord
       user.gender = "other"
     end
   end
-  
+
   def guest_user?
     email == GUEST_USER_EMAIL
   end
