@@ -1,0 +1,34 @@
+<div class="row mt-3">
+  <% if user_signed_in? %>
+    <div class="col-12">リアクションをつける</div>
+    <%= form_with url: coordinate_actions_path(coordinate), method: :post do |f| %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-check text-success", class: "btn" do %>
+        <i class="fa-solid fa-check fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-crown text-warning", class: "btn" do %>
+        <i class="fa-solid fa-crown fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-eye text-info", class: "btn" do %>
+        <i class="fa-solid fa-eye fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-fire text-danger", class: "btn" do %>
+        <i class="fa-solid fa-fire fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-flag text-warning", class: "btn" do %>
+        <i class="fa-solid fa-flag fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-heart text-danger", class: "btn" do %>
+        <i class="fa-solid fa-heart fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-lightbulb text-warning", class: "btn" do %>
+        <i class="fa-solid fa-lightbulb fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-star text-warning", class: "btn" do %>
+        <i class="fa-solid fa-star fa-lg"></i>
+      <% end %>
+      <%= button_tag type: "submit", name: "stamp", value: "fa-thumbs-up text-warning", class: "btn" do %>
+        <i class="fa-solid fa-thumbs-up fa-lg"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

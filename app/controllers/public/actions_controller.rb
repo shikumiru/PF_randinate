@@ -5,13 +5,13 @@ class Public::ActionsController < ApplicationController
     @coordinate = Coordinate.find(params[:coordinate_id])
     action = current_user.actions.new(coordinate_id: @coordinate.id, stamp: params[:stamp])
     action.save
-    redirect_to request.referer
+    redirect_to coordinate_path(@coordinate)
   end
 
   def destroy
     @coordinate = Coordinate.find(params[:coordinate_id])
-    action = current_user.actions.find_by(coordinate_id: @coordinate.id)
+    action = current_user.actions.find_by(coordinate_id: @coordinate.id, stamp: params[:stamp])
     action.destroy
-    redirect_to request.referer
+    redirect_to coordinate_path(@coordinate)
   end
 end
