@@ -12,6 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if admin_signed_in? %>
+            <li class="mx-3 nav-link text-light">管理者でログイン中</li>
             <li class="mx-3">
               <%= link_to "投稿一覧", admin_coordinates_path, class: "nav-link text-light btn btn-secondary" %>
             </li>

@@ -9,6 +9,7 @@ class Public::CoordinatesController < ApplicationController
   def create
     @coordinate = Coordinate.new(coordinate_params)
     @coordinate.user_id = current_user.id
+    # 投稿の公開・非公開の確認
     if params[:published].present?
       @coordinate.is_published = :true
     else
@@ -22,6 +23,7 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def index
+    # ユーザー・スタイル・タグでの検索
     if params[:user_id]
       @user = User.find(params[:user_id])
       user_posts = @user.coordinates
@@ -42,6 +44,7 @@ class Public::CoordinatesController < ApplicationController
   def show
     @coordinate = Coordinate.find(params[:id])
     @tags = @coordinate.tag_counts_on(:tags)
+    # 類似画像の検索機能
     if params[:similar].present?
       @coordinate.coordinate_image.blob.open do |file|
         @similar = Vision.get_image_data(file)
@@ -56,6 +59,7 @@ class Public::CoordinatesController < ApplicationController
 
   def update
     @coordinate = Coordinate.find(params[:id])
+    # 投稿の公開・非公開の確認
     if params[:published].present?
       @coordinate.is_published = :true
     else
@@ -76,6 +80,7 @@ class Public::CoordinatesController < ApplicationController
 
   def random
     @random = Coordinate.find(1)
+    # スタイル・マイコーデ・ブックマークからの検索
     if params[:style] == "メンズ"
       @random = Coordinate.find(Coordinate.mens.published.pluck(:id).shuffle[0])
     elsif params[:style] == "レディース"
