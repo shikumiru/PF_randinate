@@ -13,8 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import 'bootstrap-tagsinput';
-import "preview.js";
-import "similar.js";
+import "./preview.js";
 
 Rails.start()
 Turbolinks.start()

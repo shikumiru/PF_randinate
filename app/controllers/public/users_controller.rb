@@ -26,9 +26,10 @@ class Public::UsersController < ApplicationController
   def deactivate
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
+    # ユーザーの全投稿を非公開
     @user.coordinates.update(is_published: false)
     reset_session
-    flash[:notice] = "退会処理を完了しました。ご利用ありがとうございました。"
+    flash[:notice] = "退会処理を完了しました。投稿された全コーディネートを非公開にしました。ご利用ありがとうございました。"
     redirect_to root_path
   end
 
