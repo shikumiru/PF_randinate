@@ -1,6 +1,7 @@
 class Public::CoordinatesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit]
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :is_matching_login_user, only: [:edit, :update, :desteoy]
+  before_action :authorize_coordinate, only: [:show]
 
   def new
     @coordinate = Coordinate.new
@@ -108,6 +109,19 @@ class Public::CoordinatesController < ApplicationController
     @coordinate = Coordinate.find(params[:id])
     unless @coordinate.user == current_user
       redirect_to coordinates_path
+    end
+  end
+
+  def authorize_coordinate
+    @coordinate = Coordinate.find(params[:id])
+    if user_signed_in?
+      unless @coordinate && (@coordinate.user == current_user || @coordinate.is_published?)
+        redirect_to root_path, notice: "非公開の投稿にはアクセスできません。"
+      end
+    else
+      unless @coordinate && @coordinate.is_published?
+        redirect_to root_path, notice: "非公開の投稿にはアクセスできません。"
+      end
     end
   end
 end
