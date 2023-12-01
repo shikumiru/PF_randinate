@@ -55,11 +55,9 @@ class Public::CoordinatesController < ApplicationController
   end
 
   def edit
-    @coordinate = Coordinate.find(params[:id])
   end
 
   def update
-    @coordinate = Coordinate.find(params[:id])
     # 投稿の公開・非公開の確認
     if params[:published].present?
       @coordinate.is_published = :true
